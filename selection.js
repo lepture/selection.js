@@ -21,23 +21,34 @@
     function Selection(inputor, type) {
         this.element = inputor;
 
-        if (type === 'input') {
-            // get or set cursor
-            this.cursor = function(start, end) {
-                var inputor = this.element;
-                if (typeof start == 'undefined') {
+        this.cursor = function(start, end) {
+            // get cursor
+            var inputor = this.element;
+            if (typeof start == 'undefined') {
+                if (type === 'input') {
                     return [inputor.selectionStart, inputor.selectionEnd];
                 }
-                if (isArray(start)) {
-                    var _s = start;
-                    start = _s[0];
-                    end = _s[1];
+                if (type === 'input-ie') {
+                    return getIECursor(inputor);
                 }
-                if (typeof end === 'undefined') end = start;
-                inputor.setSelectionRange(start, end);
-                return this;
             }
 
+            // set cursor
+            if (isArray(start)) {
+                var _s = start;
+                start = _s[0];
+                end = _s[1];
+            }
+            if (typeof end === 'undefined') end = start;
+            if (type === 'input') {
+                inputor.setSelectionRange(start, end);
+            } else if (type === 'input-ie') {
+                setIECursor(inputor, start, end);
+            }
+            return this;
+        }
+
+        if (type === 'input' || type === 'input-ie') {
             // get or set selected text
             this.text = function(text) {
                 var inputor = this.element;
@@ -109,6 +120,7 @@
     // Helpers
     // -------------
 
+
     var toString = Object.prototype.toString;
     var isArray = Array.isArray;
     if (!isArray) {
@@ -118,6 +130,37 @@
     }
     var isFunction = function(val) {
         return toString.call(val) === '[object Function]';
+    }
+
+    // IE sucks. This is how to get cursor position in IE.
+    function getIECursor(inputor) {
+        var range = document.selection.createRange();
+        var pos = 0;
+        if (range && range.parentElement() === inputor) {
+            var start, end;
+            var normalizedValue = inputor.value.replace(/\r\n/g, '\n');
+            var len = normalizedValue.length;
+            var textInputRange = inputor.createTextRange();
+            textInputRange.moveToBookmark(range.getBookmark());
+            var endRange = inputor.createTextRange();
+            endRange.collapse(false);
+            if (textInputRange.compareEndPoints('StartToEnd', endRange) > -1) {
+                start = end = len;
+            } else {
+                start = -textInputRange.moveStart('character', -len);
+                end = -textInputRange.moveEnd('character', -len);
+            }
+            return [start, end];
+        }
+        return [0, 0];
+    }
+
+    function setIECursor(inputor, start, end) {
+        var range = inputor.createTextRange();
+        range.move('character', start);
+        // don't include the last one character
+        range.moveEnd('character', end - 1);
+        range.select();
     }
 
     function insertText(selection, text, start, end) {
