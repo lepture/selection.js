@@ -19,9 +19,9 @@
     var selection;
 
     function Selection(inputor, type) {
-        if (type === 'input') {
-            this.element = inputor;
+        this.element = inputor;
 
+        if (type === 'input') {
             // get or set cursor
             this.cursor = function(start, end) {
                 var inputor = this.element;
@@ -88,22 +88,22 @@
     }
 
     selection = function(inputor) {
-        if (inputor) {
+        if (inputor && inputor.length) {
             // if inputor is jQuery or zepto
-            if (inputor.length) inputor = inputor[0];
-            console.dir(inputor);
+            inputor = inputor[0];
+        }
+        if (inputor) {
             if (typeof inputor.selectionStart != 'undefined') {
                 return new Selection(inputor, 'input');
+            } else {
+                return new Selection(inputor, 'input-ie');
             }
         }
-
         if (typeof document == 'undefined') throw 'document undefined';
 
-        var sel = root.getSelection() || document.getSelection();
-
-        if (sel) return new Selection(sel, 'document');
-
-        return new Selection(document.selection, 'ie');
+        if (document.selection) return new Selection(document, 'document-ie');
+        if (document.getSelection) return new Selection(document, 'document');
+        return new Selection(inputor, 'none');
     }
 
     // Helpers
