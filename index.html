@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Selection.js</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+        <meta name="author" content="lepture" />
+        <link rel="alternate" type="application/rss+xml" href="http://feeds.lepture.com/lepture" title="Website Feed" />
+
+        <link rel="stylesheet" href="http://lepture.github.com/assets/typo.css" />
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-21475122-1']);
+            _gaq.push(['_trackPageview']);
+            _gaq.push(['_trackPageLoadTime']);
+            _gaq.push(['_setCustomVar', 1, 'Project', 'selection.js', 2]);
+            (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+             })();
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Selection.js</h1>
+
+<p><strong>UNDER DEVELOPMENT</strong></p>
+
+<p>Selection.js provides a clean API to access selection. The basic syntax:</p>
+<div class="highlight"><pre><span class="c1">// create a selection</span>
+<span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;#textarea&#39;</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">));</span>  <span class="c1">// jQuery or zepto is accepted too</span>
+
+<span class="c1">// get current cursor position</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">();</span>
+
+<span class="c1">// set cursor position</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+
+<span class="c1">// get current selected text</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+
+<span class="c1">// replace current selected text</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">);</span>
+
+<span class="c1">// insert text after current selection</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
+
+<span class="c1">// insert text before current selection</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">);</span>
+
+<span class="c1">// get current line text</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">line</span><span class="p">()</span>
+
+<span class="c1">// get surround word</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">surround</span><span class="p">();</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">surround</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>   <span class="c1">// get surroud 3 characters.</span>
+
+<span class="c1">// actions in a chain</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
+</pre></div>
+
+            <div id="footer">
+                Take a look at <a href="./demo.html">DEMO</a>
+            </div>
+        </div>
+        <a id="github" href="https://github.com/lepture/selection.js" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0; z-index:999" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    </body>
+</html>
+
