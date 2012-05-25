@@ -137,6 +137,10 @@
                 start = -textInputRange.moveStart('character', -len);
                 end = -textInputRange.moveEnd('character', -len);
             }
+            // when select to the last character, end = 1
+            if (end < start) {
+                end = len;
+            }
             return [start, end];
         }
         return [0, 0];
