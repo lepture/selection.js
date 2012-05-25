@@ -145,8 +145,8 @@
     function setIECursor(inputor, start, end) {
         var range = inputor.createTextRange();
         range.move('character', start);
-        // don't include the last one character
-        range.moveEnd('character', end - 1);
+        // why should it be named as ``moveEnd`` ?
+        range.moveEnd('character', end - start);
         range.select();
     }
 
