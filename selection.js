@@ -1,18 +1,5 @@
 // selection.js
 // =============
-//
-// 1. on document
-// 2. in textarea
-//
-// var selection = selection(inputor);
-// selection.text();  #get text
-// selection.text('new string')  # set text
-// selection.line()
-// selection.cursor()  # get or set
-// selection.element # return parent node
-// selection.append('text')
-// selection.prepend('text')
-// selection.position()
 
 
 (function(root) {
@@ -100,7 +87,7 @@
 
     selection = function(inputor) {
         if (inputor && inputor.length) {
-            // if inputor is jQuery or zepto
+            // if inputor is jQuery or zepto or a list of elements
             inputor = inputor[0];
         }
         if (inputor) {
