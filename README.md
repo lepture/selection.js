@@ -6,13 +6,17 @@ Selection.js provides a clean API to access selection. The basic syntax:
 
 ```javascript
 // create a selection
+var sel = selection(document.getElementById('#textarea'));
 var sel = selection(document.getElementsByTagName('textarea'));
+var sel = selection($('textarea'));  // jQuery or zepto is accepted too
 
 // get current cursor position
 sel.cursor();
 
 // set cursor position
+sel.cursor(1);
 sel.cursor(1, 4);
+sel.cursor([1, 4]);
 
 // get current selected text
 sel.text();
