@@ -16,14 +16,11 @@
             textarea {
                 float: left;
                 margin-right: 30px;
-                border: 1px solid #999;
-                border-radius: 4px;
-                font-size: 14px;
-                padding: 5px 8px;
             }
             pre {
                 margin-bottom: 20px;
             }
+            #explain1 { margin-right: 24px; }
         </style>
     </head>
     <body>
@@ -35,8 +32,8 @@
 
             <div class="cases">
                 <pre>var sel = selection(document.getElementById('demo'));</pre>
-            <p>Click the textarea: <span id="explain1"></span></p>
-            <pre>sel.cursor();</pre>
+            <p>Click the textarea: <span id="explain1"></span> <span id="explain2"></span></p>
+            <pre>sel.cursor(); sel.surround();</pre>
 
             <p><a href="#" id="trigger2">Click</a> to select some text. If you haven't changed the text, it should select <strong>"some"</strong>.</p>
             <pre>sel.cursor(5, 9);</pre>

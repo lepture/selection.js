@@ -4,9 +4,9 @@ $.fn.selection = selection;
 $(function(){
     var demo = $('#demo');
     var sel = $.fn.selection(demo);
-    var exp1 = $('#explain1');
     demo.on('click select keyup', function(){
-        exp1.text(sel.cursor());
+        $('#explain1').text(sel.cursor());
+        $('#explain2').text(sel.surround());
     });
 
     $('#trigger2').click(function() {

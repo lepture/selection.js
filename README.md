@@ -29,6 +29,10 @@ sel.prepend('prepend text');
 // get current line text
 sel.line()
 
-// action in a chain
+// get surround word
+sel.surround();
+sel.surround(3);   // get surroud 3 characters.
+
+// actions in a chain
 sel.cursor(1, 4).text('replaced text').prepend('prepend text').append('append text');
 ```
