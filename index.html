@@ -32,45 +32,80 @@
 <p>This is a project by <a href="http://lepture.com">Hsiaoming Yang</a>. All projects are listed at <a href="http://project.lepture.com">project page</a>.</p>
 </blockquote>
 
-<p>Selection.js provides a clean API to access selection. The basic syntax:</p>
-<div class="highlight"><pre><span class="c1">// create a selection</span>
-<span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;#textarea&#39;</span><span class="p">));</span>
+<p>Selection.js provides a clean API to access selection. It is powerful and easy
+to use. It helps developers to deal with editor or something like that.</p>
+
+<ul>
+<li><a href="https://github.com/lepture/selection.js">GitHub</a></li>
+<li><a href="http://project.lepture.com/selection.js/demo.html">DEMO</a></li>
+</ul>
+
+<p>The basic syntax:</p>
+
+<ul>
+<li>create a selection.</li>
+</ul>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;#textarea&#39;</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">));</span>  <span class="c1">// jQuery or zepto is accepted too</span>
-
-<span class="c1">// get current cursor position</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">();</span>
-
-<span class="c1">// set cursor position</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
-
-<span class="c1">// get current selected text</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
-
-<span class="c1">// replace current selected text</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">);</span>
-
-<span class="c1">// insert text after current selection</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
-
-<span class="c1">// insert text before current selection</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">);</span>
-
-<span class="c1">// get current line text</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">line</span><span class="p">()</span>
-
-<span class="c1">// get surround word</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">surround</span><span class="p">();</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">surround</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>   <span class="c1">// get surroud 3 characters.</span>
-
-<span class="c1">// actions in a chain</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
 </pre></div>
 
-<p>This project is still under development. But it just works, take a look at
-<a href="http://project.lepture.com/selection.js/demo.html">DEMO</a>.</p>
+<ul>
+<li>get current cursor position, return [start, end]</li>
+</ul>
+<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">();</span>
+</pre></div>
+
+<ul>
+<li>set cursor position (or select text)</li>
+</ul>
+<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+</pre></div>
+
+<ul>
+<li>get current selected text</li>
+</ul>
+<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+</pre></div>
+
+<ul>
+<li>replace current selected text</li>
+</ul>
+<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>insert text after current selection</li>
+</ul>
+<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>insert text before current selection</li>
+</ul>
+<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">);</span>
+</pre></div>
+
+<ul>
+<li>get current line text</li>
+</ul>
+<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">line</span><span class="p">()</span>
+</pre></div>
+
+<ul>
+<li>get surround word</li>
+</ul>
+<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">surround</span><span class="p">();</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">surround</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>   <span class="c1">// get surroud 3 characters.</span>
+</pre></div>
+
+<ul>
+<li>actions in a chain</li>
+</ul>
+<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
+</pre></div>
 
         </div>
         <hr class="end" />
