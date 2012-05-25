@@ -2,7 +2,7 @@
 # Author: Hsiaoming Yang <lepture@me.com>
 # Website: http://lepture.com
 
-.PHONY: doc upload
+.PHONY: doc upload publish
 
 
 doc:
@@ -10,3 +10,6 @@ doc:
 
 upload:
 	git push origin master
+
+publish:
+	git push origin gh-pages
