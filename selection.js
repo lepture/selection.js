@@ -5,19 +5,17 @@
 (function(root) {
     var selection;
 
-    function Selection(inputor, type) {
+    // Textarea or Input Selection
+    function TextSelection(inputor, isIE) {
         this.element = inputor;
-
         this.cursor = function(start, end) {
             // get cursor
             var inputor = this.element;
             if (typeof start == 'undefined') {
-                if (type === 'input') {
-                    return [inputor.selectionStart, inputor.selectionEnd];
-                }
-                if (type === 'input-ie') {
+                if (isIE) {
                     return getIECursor(inputor);
                 }
+                return [inputor.selectionStart, inputor.selectionEnd];
             }
 
             // set cursor
@@ -27,62 +25,66 @@
                 end = _s[1];
             }
             if (typeof end === 'undefined') end = start;
-            if (type === 'input') {
-                inputor.setSelectionRange(start, end);
-            } else if (type === 'input-ie') {
+            if (isIE) {
                 setIECursor(inputor, start, end);
+            } else {
+                inputor.setSelectionRange(start, end);
             }
             return this;
         }
 
-        if (type === 'input' || type === 'input-ie') {
-            // get or set selected text
-            this.text = function(text) {
-                var inputor = this.element;
-                var cursor = this.cursor();
-                if (typeof text == 'undefined') {
-                    return inputor.value.slice(cursor[0], cursor[1]);
-                }
-                return insertText(this, text, cursor[0], cursor[1]);
+        // get or set selected text
+        this.text = function(text) {
+            var inputor = this.element;
+            var cursor = this.cursor();
+            if (typeof text == 'undefined') {
+                return inputor.value.slice(cursor[0], cursor[1]);
             }
+            return insertText(this, text, cursor[0], cursor[1]);
+        }
 
-            // append text to the end
-            this.append = function(text) {
-                var end = this.cursor()[1];
-                return insertText(this, text, end, end);
+        // append text to the end
+        this.append = function(text) {
+            var end = this.cursor()[1];
+            return insertText(this, text, end, end);
+        }
+
+        this.prepend = function(text) {
+            var start = this.cursor()[0];
+            return insertText(this, text, start, start);
+        }
+
+        this.surround = function(count) {
+            if (typeof count == 'undefined') count = 1;
+            var value = this.element.value;
+            var cursor = this.cursor();
+            var before = value.slice(
+                Math.max(0, cursor[0] - count),
+                cursor[0]
+            );
+            var after = value.slice(cursor[1], cursor[1] + count);
+            return [before, after];
+        }
+
+        this.line = function() {
+            var value = this.element.value;
+            var cursor = this.cursor();
+            var before = value.slice(0, cursor[0]).lastIndexOf('\n');
+            var after = value.slice(cursor[1]).indexOf('\n');
+
+            // we don't need \n
+            var start = before + 1;
+            if (after === -1) {
+                return value.slice(start);
             }
-
-            this.prepend = function(text) {
-                var start = this.cursor()[0];
-                return insertText(this, text, start, start);
-            }
-
-            this.surround = function(count) {
-                if (typeof count == 'undefined') count = 1;
-                var value = this.element.value;
-                var cursor = this.cursor();
-                var before = value.slice(Math.max(0, cursor[0] - count),
-                                         cursor[0]);
-                var after = value.slice(cursor[1], cursor[1] + count);
-                return [before, after];
-            }
-
-            this.line = function() {
-                var value = this.element.value;
-                var cursor = this.cursor();
-                var before = value.slice(0, cursor[0]).lastIndexOf('\n');
-                var after = value.slice(cursor[1]).indexOf('\n');
-
-                // we don't need \n
-                var start = before + 1;
-                if (after === -1) {
-                    return value.slice(start);
-                }
-                var end = cursor[1] + after;
-                return value.slice(start, end);
-            }
+            var end = cursor[1] + after;
+            return value.slice(start, end);
         }
         return this;
+    }
+
+    // Selection outside any input area
+    function Selection(isIE) {
     }
 
     selection = function(inputor) {
@@ -92,16 +94,16 @@
         }
         if (inputor) {
             if (typeof inputor.selectionStart != 'undefined') {
-                return new Selection(inputor, 'input');
+                return new TextSelection(inputor);
             } else {
-                return new Selection(inputor, 'input-ie');
+                return new TextSelection(inputor, true);
             }
         }
         if (typeof document == 'undefined') throw 'document undefined';
 
-        if (document.selection) return new Selection(document, 'document-ie');
-        if (document.getSelection) return new Selection(document, 'document');
-        return new Selection(inputor, 'none');
+        if (document.getSelection) return new Selection(document);
+        if (document.selection) return new Selection(document, true);
+        throw 'your browser is very weired';
     }
 
     // Helpers
