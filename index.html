@@ -40,101 +40,73 @@ to use. It helps developers to deal with editor or something like that.</p>
 <li><a href="http://project.lepture.com/selection.js/demo.html">DEMO</a></li>
 </ul>
 
-<h2>Selection in textare or input</h2>
+<h2>Selection in textarea or input</h2>
 
 <p>The basic syntax:</p>
 
 <ul>
-<li>create a selection.</li>
-</ul>
+<li><p>create a selection.</p>
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;#textarea&#39;</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">));</span>
 <span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">));</span>  <span class="c1">// jQuery or zepto is accepted too</span>
-</pre></div>
-
-<ul>
-<li>get current cursor position, return [start, end]</li>
-</ul>
+</pre></div></li>
+<li><p>get current cursor position, return [start, end]</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">();</span>
-</pre></div>
-
-<ul>
-<li>set cursor position (or select text)</li>
-</ul>
+</pre></div></li>
+<li><p>set cursor position (or select text)</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
 <span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
-</pre></div>
-
-<ul>
-<li>get current selected text</li>
-</ul>
+</pre></div></li>
+<li><p>get current selected text</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
-</pre></div>
-
-<ul>
-<li>replace current selected text</li>
-</ul>
+</pre></div></li>
+<li><p>replace current selected text</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">);</span>
-</pre></div>
-
-<ul>
-<li>insert text after current selection</li>
-</ul>
+</pre></div></li>
+<li><p>insert text after current selection</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
-</pre></div>
-
-<ul>
-<li>insert text before current selection</li>
-</ul>
+</pre></div></li>
+<li><p>insert text before current selection</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">);</span>
-</pre></div>
-
-<ul>
-<li>get current line text</li>
-</ul>
+</pre></div></li>
+<li><p>get current line text</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">line</span><span class="p">()</span>
-</pre></div>
-
-<ul>
-<li>get surround word</li>
-</ul>
+</pre></div></li>
+<li><p>get surround word</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">surround</span><span class="p">();</span>
 <span class="nx">sel</span><span class="p">.</span><span class="nx">surround</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>   <span class="c1">// get surroud 3 characters.</span>
-</pre></div>
-
-<ul>
-<li>actions in a chain</li>
-</ul>
+</pre></div></li>
+<li><p>actions in a chain</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
-</pre></div>
+</pre></div></li>
+</ul>
 
 <h2>Selection on document</h2>
 
 <p>Selection on document is much more complex. Should it support selection on document?</p>
 
-<h3>selection in the same element</h3>
+<ul>
+<li><p>selection in the same element</p>
 
-<p>This is similar to selection in textarea, it is easy to implement this feature.</p>
-
-<h3>selection has an element in it</h3>
+<p>This is similar to selection in textarea, it is easy to implement this feature.</p></li>
+<li><p>selection has an element in it</p>
 <div class="highlight"><pre>this is a [selected <span class="nt">&lt;em&gt;</span>TEST<span class="nt">&lt;/em&gt;</span> text] for explain
 </pre></div>
 
 <p>assume that we have selected <code>selected &lt;em&gt;TEST&lt;/em&gt; text</code> ,
-this is much more complex, but we can handle it.</p>
-
-<h3>selection between elements</h3>
+this is much more complex, but we can handle it.</p></li>
+<li><p>selection between elements</p>
 <div class="highlight"><pre><span class="nt">&lt;div&gt;</span>this is a [selection <span class="nt">&lt;/div&gt;&lt;p&gt;</span>between different] elements<span class="nt">&lt;/p&gt;</span>
 </pre></div>
 
-<p>assume that we have selected <code>selection &lt;div&gt;&lt;p&gt; between different</code>, it is even
-more complex.</p>
+<p>assume that we have selected <code>selection &lt;div&gt;&lt;p&gt; between different</code>,
+it is even more complex.</p></li>
+<li><p>selection with a large area</p>
 
-<h3>selection with a large area</h3>
-
-<p>What if we select a very large area, it has elements in it, it is between two
-elements.</p>
+<p>What if we select a very large area, it has elements in it,
+it is between two elements.</p></li>
+</ul>
 
         </div>
         <hr class="end" />
