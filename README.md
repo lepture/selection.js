@@ -83,3 +83,30 @@ sel.cursor(1, 4).text('replaced text').prepend('prepend text').append('append te
 ## Selection on document
 
 Selection on document is much more complex. Should it support selection on document?
+
+### selection in the same element
+
+This is similar to selection in textarea, it is easy to implement this feature.
+
+### selection has an element in it
+
+```html
+this is a [selected <em>TEST</em> text] for explain
+```
+
+assume that we have selected ``selected <em>TEST</em> text`` ,
+this is much more complex, but we can handle it.
+
+### selection between elements
+
+```html
+<div>this is a [selection </div><p>between different] elements</p>
+```
+
+assume that we have selected ``selection <div><p> between different``, it is even
+more complex.
+
+### selection with a large area
+
+What if we select a very large area, it has elements in it, it is between two
+elements.

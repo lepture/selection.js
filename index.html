@@ -113,6 +113,29 @@ to use. It helps developers to deal with editor or something like that.</p>
 
 <p>Selection on document is much more complex. Should it support selection on document?</p>
 
+<h3>selection in the same element</h3>
+
+<p>This is similar to selection in textarea, it is easy to implement this feature.</p>
+
+<h3>selection has an element in it</h3>
+<div class="highlight"><pre>this is a [selected <span class="nt">&lt;em&gt;</span>TEST<span class="nt">&lt;/em&gt;</span> text] for explain
+</pre></div>
+
+<p>assume that we have selected <code>selected &lt;em&gt;TEST&lt;/em&gt; text</code> ,
+this is much more complex, but we can handle it.</p>
+
+<h3>selection between elements</h3>
+<div class="highlight"><pre><span class="nt">&lt;div&gt;</span>this is a [selection <span class="nt">&lt;/div&gt;&lt;p&gt;</span>between different] elements<span class="nt">&lt;/p&gt;</span>
+</pre></div>
+
+<p>assume that we have selected <code>selection &lt;div&gt;&lt;p&gt; between different</code>, it is even
+more complex.</p>
+
+<h3>selection with a large area</h3>
+
+<p>What if we select a very large area, it has elements in it, it is between two
+elements.</p>
+
         </div>
         <hr class="end" />
         <div id="footer">
