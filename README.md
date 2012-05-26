@@ -1,4 +1,4 @@
-## Selection.js
+# Selection.js
 
 **UNDER DEVELOPMENT**
 
@@ -9,6 +9,8 @@ to use. It helps developers to deal with editor or something like that.
 
 - [GitHub](https://github.com/lepture/selection.js)
 - [DEMO](http://project.lepture.com/selection.js/demo.html)
+
+## Selection in textare or input
 
 The basic syntax:
 
@@ -76,3 +78,8 @@ sel.surround(3);   // get surroud 3 characters.
 ```javascript
 sel.cursor(1, 4).text('replaced text').prepend('prepend text').append('append text');
 ```
+
+
+## Selection on document
+
+Selection on document is much more complex. Should it support selection on document?
