@@ -5,7 +5,7 @@
 (function(root) {
     var selection;
 
-    // Textarea or Input Selection
+    // Selection in Texarea or Input
     function TextSelection(inputor, isIE) {
         this.element = inputor;
         this.cursor = function(start, end) {
@@ -83,8 +83,34 @@
         return this;
     }
 
-    // Selection outside any input area
+    // Selection on document
+    // Only deal with selection in the same element.
     function Selection(isIE) {
+        var sel = root.getSelection();
+
+        this.element = getSelectionElement(sel);
+
+        this.cursor = function(start, end, target) {
+            if (typeof start == 'undefined') {
+                if (sel.anchorNode === sel.focusNode) {
+                    var start = Math.min(sel.anchorOffset, sel.focusOffset);
+                    var end = Math.max(sel.anchorOffset, sel.focusOffset);
+                    return [start, end];
+                }
+                // selection in different elements is much more complex
+                // we don't support it right now.
+                return [0, 0];
+            }
+
+            // set cursor
+            if (isArray(start)) {
+                var _s = start;
+                start = _s[0];
+                end = _s[1];
+            }
+            if (typeof end === 'undefined') end = start;
+            return this;
+        }
     }
 
     selection = function(inputor) {
@@ -93,16 +119,19 @@
             inputor = inputor[0];
         }
         if (inputor) {
+            // detect feature first.
             if (typeof inputor.selectionStart != 'undefined') {
                 return new TextSelection(inputor);
-            } else {
-                return new TextSelection(inputor, true);
             }
+            var tag = inputor.tagName.toLowerCase();
         }
-        if (typeof document == 'undefined') throw 'document undefined';
+        if (tag && (tag === 'textarea' || tag === 'input')) {
+            // if has inputor and inputor element is textarea or input
+            return new TextSelection(inputor, true);
+        }
 
-        if (document.getSelection) return new Selection(document);
-        if (document.selection) return new Selection(document, true);
+        if (root.getSelection) return new Selection();
+        if (root.selection) return new Selection(true);
         throw 'your browser is very weired';
     }
 
@@ -165,6 +194,24 @@
         end = start + text.length;
         selection.cursor(start, end);
         return selection;
+    }
+
+    function getSelectionElement(sel) {
+        // start point and end point maybe in the different elements.
+        // then we find their common father.
+        var element = null;
+        var anchorNode = sel.anchorNode;
+        var focusNode = sel.focusNode;
+        while (!element) {
+            if (anchorNode.parentElement === focusNode.parentElement) {
+                element = focusNode.parentElement;
+                break;
+            } else {
+                anchorNode = anchorNode.parentElement;
+                focusNode = focusNode.parentElement;
+            }
+        }
+        return element;
     }
 
     // CommonJS compatable
