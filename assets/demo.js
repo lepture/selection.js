@@ -5,17 +5,13 @@ $(function(){
     var demo = $('#demo');
     var sel = $.fn.selection(demo);
     demo.on('click select keyup', function(){
-        $('#explain1').text(sel.cursor());
-        $('#explain2').text(sel.surround());
+        $('#explain1').text(sel.text());
+        $('#explain2').text(sel.cursor());
+        $('#explain3').text(sel.surround());
     });
 
     $('#trigger2').click(function() {
         sel.cursor(5, 9);
-        return false;
-    });
-
-    $('#trigger3').click(function() {
-        alert(sel.text());
         return false;
     });
 

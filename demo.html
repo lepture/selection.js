@@ -20,7 +20,13 @@
             pre {
                 margin-bottom: 20px;
             }
-            #explain1 { margin-right: 24px; }
+            em {
+                color: #d14;
+                padding: 1px 4px;
+                font-style: normal;
+                background: #f7f7f9;
+                border: 1px solid #e1e1e8;
+            }
         </style>
         <script type="text/javascript">
             var _gaq = _gaq || [];
@@ -44,14 +50,13 @@
 
             <div class="cases">
                 <pre>var sel = selection(document.getElementById('demo'));</pre>
-            <p>Click the textarea: <span id="explain1"></span> <span id="explain2"></span></p>
-            <pre>sel.cursor(); sel.surround();</pre>
+            <p>
+            You are selecting <em id="explain1"></em> at <em id="explain2"></em>, surround by <em id="explain3"></em></p>
+            </p>
+            <pre>sel.text(); sel.cursor(); sel.surround();</pre>
 
-            <p><a href="#" id="trigger2">Click</a> to select some text. If you haven't changed the text, it should select <strong>"some"</strong>.</p>
+            <p><a href="#" id="trigger2">Click</a> to select some text. If you haven't changed the text, it should select <em>some</em>.</p>
             <pre>sel.cursor(5, 9);</pre>
-
-            <p><a href="#" id="trigger3">Click</a> to get the selected text. If you haven't selected any text, please select something.</p>
-            <pre>sel.text();</pre>
 
             <p><a href="#" id="trigger4">Click</a> to replace the selected text.</p>
             <pre>sel.text('this is a replaced text');</pre>
