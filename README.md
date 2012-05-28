@@ -10,6 +10,8 @@ to use. It helps developers to deal with editor or something like that.
 - [GitHub](https://github.com/lepture/selection.js)
 - [DEMO](http://project.lepture.com/selection.js/demo.html)
 
+> Thanks to [ichord](https://github.com/ichord)'s work on [jquery.caret.js](https://github.com/ichord/At.js/blob/master/js/jquery.caret.js).
+
 ## Selection in textarea or input
 
 The basic syntax:
