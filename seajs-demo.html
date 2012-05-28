@@ -4,9 +4,10 @@
         <meta charset="UTF-8" />
         <title>Selection.js</title>
         <link rel="stylesheet" href="http://lepture.github.com/assets/typo.css" />
-        <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-        <script type="text/javascript" src="./selection.js"></script>
-        <script type="text/javascript" src="./assets/demo.js"></script>
+        <script type="text/javascript" src="http://modules.seajs.org/seajs/1.1.0/sea.js" data-main="./assets/demo.js"></script>
+        <script type="text/javascript">
+            seajs.config({alias:{'jquery': 'http://modules.seajs.org/jquery/1.7.2/jquery.js'}});
+        </script>
         <style type="text/css">
             body {
                 max-width: 980px;
