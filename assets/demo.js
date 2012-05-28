@@ -35,7 +35,7 @@
     }
     if (typeof jQuery !== 'undefined') {
         $(function(){
-            demoCase($, selection);
+            demoCase($, $.fn.selection);
         });
     } else {
         // seajs

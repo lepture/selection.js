@@ -7,8 +7,10 @@
 Selection.js provides a clean API to access selection. It is powerful and easy
 to use. It helps developers to deal with editor or something like that.
 
+
 - [GitHub](https://github.com/lepture/selection.js)
 - [DEMO](http://project.lepture.com/selection.js/demo.html)
+- [seajs DEMO](http://project.lepture.com/selection.js/seajs-demo.html)
 
 > Thanks to [ichord](https://github.com/ichord)'s work on [jquery.caret.js](https://github.com/ichord/At.js/blob/master/js/jquery.caret.js).
 
@@ -80,6 +82,31 @@ The basic syntax:
     ```javascript
     sel.cursor(1, 4).text('replaced text').prepend('prepend text').append('append text');
     ```
+
+
+## Compatable with
+
+- [Nodejs](http://nodejs.org/)
+- [seajs](http://seajs.org/)
+- [jQuery](http://jquery.com/)
+
+### seajs
+
+Load selection with seajs:
+
+```javascript
+seajs.use(['./selection'], function(selection) {
+    var sel = selection(document.getElementsByTagName('textarea'));
+});
+```
+
+### jQuery
+
+Load selection with jQuery:
+
+```javascript
+var sel = $.fn.selection($('textarea'));
+```
 
 
 ## Selection on document

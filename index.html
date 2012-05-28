@@ -38,6 +38,7 @@ to use. It helps developers to deal with editor or something like that.</p>
 <ul>
 <li><a href="https://github.com/lepture/selection.js">GitHub</a></li>
 <li><a href="http://project.lepture.com/selection.js/demo.html">DEMO</a></li>
+<li><a href="http://project.lepture.com/selection.js/seajs-demo.html">seajs DEMO</a></li>
 </ul>
 
 <blockquote>
@@ -85,6 +86,28 @@ to use. It helps developers to deal with editor or something like that.</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
 </pre></div></li>
 </ul>
+
+<h2>Compatable with</h2>
+
+<ul>
+<li><a href="http://nodejs.org/">Nodejs</a></li>
+<li><a href="http://seajs.org/">seajs</a></li>
+<li><a href="http://jquery.com/">jQuery</a></li>
+</ul>
+
+<h3>seajs</h3>
+
+<p>Load selection with seajs:</p>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;./selection&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">selection</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">));</span>
+<span class="p">});</span>
+</pre></div>
+
+<h3>jQuery</h3>
+
+<p>Load selection with jQuery:</p>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">selection</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">));</span>
+</pre></div>
 
 <h2>Selection on document</h2>
 
