@@ -86,31 +86,19 @@
     // Selection on document
     // Only deal with selection in the same element.
     function Selection(isIE) {
-        var sel = root.getSelection();
-
-        this.element = getSelectionElement(sel);
-
-        this.cursor = function(start, end, target) {
-            if (typeof start == 'undefined') {
-                if (sel.anchorNode === sel.focusNode) {
-                    var start = Math.min(sel.anchorOffset, sel.focusOffset);
-                    var end = Math.max(sel.anchorOffset, sel.focusOffset);
-                    return [start, end];
-                }
-                // selection in different elements is much more complex
-                // we don't support it right now.
-                return [0, 0];
+        if (!isIE) {
+            var sel = root.getSelection();
+            this.element = getSelectionElement(sel);
+            this.text = function() {
+                // TODO set text
+                return sel.toString();
             }
-
-            // set cursor
-            if (isArray(start)) {
-                var _s = start;
-                start = _s[0];
-                end = _s[1];
+        } else {
+            this.text = function() {
+                return document.selection.createRange().text;
             }
-            if (typeof end === 'undefined') end = start;
-            return this;
         }
+        return this;
     }
 
     selection = function(inputor) {
@@ -131,7 +119,7 @@
         }
 
         if (root.getSelection) return new Selection();
-        if (root.selection) return new Selection(true);
+        if (document.selection) return new Selection(true);
         throw 'your browser is very weired';
     }
 
@@ -151,6 +139,7 @@
     }
 
     // IE sucks. This is how to get cursor position in IE.
+    // Thanks to [ichord](https://github.com/ichord/At.js)
     function getIECursor(inputor) {
         var range = document.selection.createRange();
         var pos = 0;
@@ -219,5 +208,9 @@
         module.exports = selection;
     } else {
         root.selection = selection;
+    }
+    // jQuery plugin support
+    if (typeof jQuery !== 'undefined') {
+        jQuery.fn.selection = selection;
     }
 })(this);
