@@ -1,8 +1,19 @@
 // selection.js
 // =============
 
+(function(factory) {
+    if (typeof define === 'function') {
+        // seajs support
+        define(factory);
+    } else if (typeof require === 'function') {
+        // nodejs support
+        factory(require, exports, module);
+    } else {
+        factory();
+    }
+})(function(require, exports, module) {
+    var root = this;  // window
 
-(function(root) {
     var selection;
 
     // Selection in Texarea or Input
@@ -218,4 +229,4 @@
     if (typeof jQuery !== 'undefined') {
         jQuery.fn.selection = selection;
     }
-})(this);
+});
