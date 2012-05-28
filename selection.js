@@ -43,17 +43,19 @@
             return insertText(this, text, cursor[0], cursor[1]);
         }
 
-        // append text to the end
+        // append text to the end, and select the appended text
         this.append = function(text) {
             var end = this.cursor()[1];
             return insertText(this, text, end, end);
         }
 
+        // prepend text to the start, and select the prepended text
         this.prepend = function(text) {
             var start = this.cursor()[0];
             return insertText(this, text, start, start);
         }
 
+        // get the surround words of the selection
         this.surround = function(count) {
             if (typeof count == 'undefined') count = 1;
             var value = this.element.value;
@@ -66,6 +68,7 @@
             return [before, after];
         }
 
+        // get the selection's line text
         this.line = function() {
             var value = this.element.value;
             var cursor = this.cursor();
@@ -84,7 +87,7 @@
     }
 
     // Selection on document
-    // Only deal with selection in the same element.
+    // TODO: should it support this feature ?
     function Selection(isIE) {
         if (!isIE) {
             var sel = root.getSelection();
@@ -101,6 +104,8 @@
         return this;
     }
 
+    // selection
+    // ---------
     selection = function(inputor) {
         if (inputor && inputor.length) {
             // if inputor is jQuery or zepto or a list of elements
