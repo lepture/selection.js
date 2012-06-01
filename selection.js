@@ -45,25 +45,25 @@
         }
 
         // get or set selected text
-        this.text = function(text) {
+        this.text = function(text, cur) {
             var inputor = this.element;
             var cursor = this.cursor();
             if (typeof text == 'undefined') {
                 return inputor.value.slice(cursor[0], cursor[1]);
             }
-            return insertText(this, text, cursor[0], cursor[1]);
+            return insertText(this, text, cursor[0], cursor[1], cur);
         }
 
         // append text to the end, and select the appended text
-        this.append = function(text) {
+        this.append = function(text, cur) {
             var end = this.cursor()[1];
-            return insertText(this, text, end, end);
+            return insertText(this, text, end, end, cur);
         }
 
         // prepend text to the start, and select the prepended text
-        this.prepend = function(text) {
+        this.prepend = function(text, cur) {
             var start = this.cursor()[0];
-            return insertText(this, text, start, start);
+            return insertText(this, text, start, start, cur);
         }
 
         // get the surround words of the selection
@@ -190,14 +190,20 @@
         range.select();
     }
 
-    function insertText(selection, text, start, end) {
+    function insertText(selection, text, start, end, cursor) {
         if (typeof text == 'undefined') text = '';
         var value = selection.element.value;
         selection.element.value = [
             value.slice(0, start), text, value.slice(end)
         ].join('');
         end = start + text.length;
-        selection.cursor(start, end);
+        if (cursor === 'left') {
+            selection.cursor(start);
+        } else if (cursor === 'right') {
+            selection.cursor(end);
+        } else {
+            selection.cursor(start, end);
+        }
         return selection;
     }
 
