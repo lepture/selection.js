@@ -66,13 +66,27 @@ to use. It helps developers to deal with editor or something like that.</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
 </pre></div></li>
 <li><p>replace current selected text</p>
-<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><span class="c1">// will select replaced text</span>
+<span class="c1">// word ... [replaced text] word ...</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">);</span>
+
+<span class="c1">// cursor will be at the left of the replaced text</span>
+<span class="c1">// word ... |replaced text word ...</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">);</span>
+
+<span class="c1">// curosr will be at the right of the replaced text</span>
+<span class="c1">// word ... replaced text| word ...</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">);</span>
 </pre></div></li>
 <li><p>insert text after current selection</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">);</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">);</span>
 </pre></div></li>
 <li><p>insert text before current selection</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">);</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">);</span>
+<span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">);</span>
 </pre></div></li>
 <li><p>get current line text</p>
 <div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">line</span><span class="p">()</span>

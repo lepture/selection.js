@@ -49,19 +49,33 @@ The basic syntax:
 - replace current selected text
 
     ```javascript
+    // will select replaced text
+    // word ... [replaced text] word ...
     sel.text('replaced text');
+
+    // cursor will be at the left of the replaced text
+    // word ... |replaced text word ...
+    sel.text('replaced text', 'left');
+
+    // curosr will be at the right of the replaced text
+    // word ... replaced text| word ...
+    sel.text('replaced text', 'right');
     ```
 
 - insert text after current selection
 
     ```javascript
     sel.append('append text');
+    sel.append('append text', 'left');
+    sel.append('append text', 'right');
     ```
 
 - insert text before current selection
 
     ```javascript
     sel.prepend('prepend text');
+    sel.prepend('prepend text', 'left');
+    sel.prepend('prepend text', 'right');
     ```
 
 - get current line text
