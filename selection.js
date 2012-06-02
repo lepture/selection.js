@@ -12,7 +12,7 @@
         factory();
     }
 })(function(require, exports, module) {
-    var root = this;  // window
+    var global = this;  // window
 
     var selection;
 
@@ -101,7 +101,7 @@
     // TODO: should it support this feature ?
     function Selection(isIE) {
         if (!isIE) {
-            var sel = root.getSelection();
+            var sel = global.getSelection();
             this.element = getSelectionElement(sel);
             this.text = function() {
                 // TODO set text
@@ -134,7 +134,7 @@
             return new TextSelection(inputor, true);
         }
 
-        if (root.getSelection) return new Selection();
+        if (global.getSelection) return new Selection();
         if (document.selection) return new Selection(true);
         throw 'your browser is very weired';
     }
@@ -229,7 +229,7 @@
     if (typeof module !== 'undefined') {
         module.exports = selection;
     } else {
-        root.selection = selection;
+        global.selection = selection;
     }
     // jQuery plugin support
     if (typeof jQuery !== 'undefined') {
