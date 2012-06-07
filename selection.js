@@ -17,7 +17,7 @@
     var selection;
 
     // Selection in Texarea or Input
-    function TextSelection(inputor, isIE) {
+    function Selection(inputor, isIE) {
         this.element = inputor;
         this.cursor = function(start, end) {
             // get cursor
@@ -43,63 +43,62 @@
             }
             return this;
         }
-
-        // get or set selected text
-        this.text = function(text, cur) {
-            var inputor = this.element;
-            var cursor = this.cursor();
-            if (typeof text == 'undefined') {
-                return inputor.value.slice(cursor[0], cursor[1]);
-            }
-            return insertText(this, text, cursor[0], cursor[1], cur);
-        }
-
-        // append text to the end, and select the appended text
-        this.append = function(text, cur) {
-            var end = this.cursor()[1];
-            return insertText(this, text, end, end, cur);
-        }
-
-        // prepend text to the start, and select the prepended text
-        this.prepend = function(text, cur) {
-            var start = this.cursor()[0];
-            return insertText(this, text, start, start, cur);
-        }
-
-        // get the surround words of the selection
-        this.surround = function(count) {
-            if (typeof count == 'undefined') count = 1;
-            var value = this.element.value;
-            var cursor = this.cursor();
-            var before = value.slice(
-                Math.max(0, cursor[0] - count),
-                cursor[0]
-            );
-            var after = value.slice(cursor[1], cursor[1] + count);
-            return [before, after];
-        }
-
-        // get the selection's line text
-        this.line = function() {
-            var value = this.element.value;
-            var cursor = this.cursor();
-            var before = value.slice(0, cursor[0]).lastIndexOf('\n');
-            var after = value.slice(cursor[1]).indexOf('\n');
-
-            // we don't need \n
-            var start = before + 1;
-            if (after === -1) {
-                return value.slice(start);
-            }
-            var end = cursor[1] + after;
-            return value.slice(start, end);
-        }
         return this;
+    }
+
+    // get or set selected text
+    Selection.prototype.text = function(text, cur) {
+        var inputor = this.element;
+        var cursor = this.cursor();
+        if (typeof text == 'undefined') {
+            return inputor.value.slice(cursor[0], cursor[1]);
+        }
+        return insertText(this, text, cursor[0], cursor[1], cur);
+    }
+
+    // append text to the end, and select the appended text
+    Selection.prototype.append = function(text, cur) {
+        var end = this.cursor()[1];
+        return insertText(this, text, end, end, cur);
+    }
+
+    // prepend text to the start, and select the prepended text
+    Selection.prototype.prepend = function(text, cur) {
+        var start = this.cursor()[0];
+        return insertText(this, text, start, start, cur);
+    }
+
+    // get the surround words of the selection
+    Selection.prototype.surround = function(count) {
+        if (typeof count == 'undefined') count = 1;
+        var value = this.element.value;
+        var cursor = this.cursor();
+        var before = value.slice(
+            Math.max(0, cursor[0] - count),
+            cursor[0]
+        );
+        var after = value.slice(cursor[1], cursor[1] + count);
+        return [before, after];
+    }
+
+    Selection.prototype.line = function() {
+        var value = this.element.value;
+        var cursor = this.cursor();
+        var before = value.slice(0, cursor[0]).lastIndexOf('\n');
+        var after = value.slice(cursor[1]).indexOf('\n');
+
+        // we don't need \n
+        var start = before + 1;
+        if (after === -1) {
+            return value.slice(start);
+        }
+        var end = cursor[1] + after;
+        return value.slice(start, end);
     }
 
     // Selection on document
     // TODO: should it support this feature ?
-    function Selection(isIE) {
+    function DocumentSelection(isIE) {
         if (!isIE) {
             var sel = global.getSelection();
             this.element = getSelectionElement(sel);
@@ -125,23 +124,22 @@
         if (inputor) {
             // detect feature first.
             if (typeof inputor.selectionStart != 'undefined') {
-                return new TextSelection(inputor);
+                return new Selection(inputor);
             }
             var tag = inputor.tagName.toLowerCase();
         }
         if (tag && (tag === 'textarea' || tag === 'input')) {
             // if has inputor and inputor element is textarea or input
-            return new TextSelection(inputor, true);
+            return new Selection(inputor, true);
         }
 
-        if (global.getSelection) return new Selection();
-        if (document.selection) return new Selection(true);
+        if (global.getSelection) return new DocumentSelection();
+        if (document.selection) return new DocumentSelection(true);
         throw 'your browser is very weired';
     }
 
     // Helpers
     // -------------
-
 
     var toString = Object.prototype.toString;
     var isArray = Array.isArray;
