@@ -8,8 +8,8 @@
 doc:
 	doki.py -l js -t default --title=selection.js --github=selection.js README.md > index.html
 
-upload:
-	git push origin master
-
 publish:
 	git push origin gh-pages
+
+minify:
+	uglifyjs -nc selection.js > dist/selection.min.js
