@@ -1,6 +1,5 @@
 # Selection.js
 
-**UNDER DEVELOPMENT**
 
 > This is a project by [Hsiaoming Yang](http://lepture.com). All projects are listed at [project page](http://project.lepture.com).
 
@@ -153,3 +152,8 @@ Selection on document is much more complex. Should it support selection on docum
 
     What if we select a very large area, it has elements in it,
     it is between two elements.
+
+
+## Changelog
+
+- v1.0.0: 2012-06-13
