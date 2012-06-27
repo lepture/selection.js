@@ -2,8 +2,8 @@
     "name": "selection",
     "version": "1.0.0",
     "description": "",
-    "homepage": "https://lepture.github.com/selection.js/",
-    "author": "Hsiaoming Yang <lepture@me.com> (http://lepture.com)",
+    "homepage": "http://project.lepture.com/selection.js/",
+    "author": "Hsiaoming Yang <lepture@me.com>",
     "keywords": [
         "selection",
         "textarea",
