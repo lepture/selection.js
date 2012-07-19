@@ -1,15 +1,15 @@
 # Selection.js
 
 
-> This is a project by [Hsiaoming Yang](http://lepture.com). All projects are listed at [project page](http://project.lepture.com).
+> This is a project by [Hsiaoming Yang](http://lepture.com). All projects are listed at [project page](http://lab.lepture.com).
 
 Selection.js provides a clean API to access selection. It is powerful and easy
 to use. It helps developers to deal with editor or something like that.
 
 
 - [GitHub](https://github.com/lepture/selection.js)
-- [DEMO](http://project.lepture.com/selection.js/demo.html)
-- [seajs DEMO](http://project.lepture.com/selection.js/seajs-demo.html)
+- [DEMO](http://lab.lepture.com/selection.js/demo.html)
+- [seajs DEMO](http://lab.lepture.com/selection.js/seajs-demo.html)
 
 > Thanks to [ichord](https://github.com/ichord)'s work on [jquery.caret.js](https://github.com/ichord/At.js/blob/master/js/jquery.caret.js).
 
