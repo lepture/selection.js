@@ -1,9 +1,6 @@
-# 示例
+# Example
 
 -------------
-
-
-上帝说，要有输入框，于是就有了输入框。
 
 <style type="text/css">
 #speaker em {

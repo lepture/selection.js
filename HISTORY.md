@@ -4,6 +4,6 @@
 
 ## 0.9.0
 
-`tag:new` transform from **lepture/selection.js** to **aralejs/selection**.
+`tag:new` make it a CMD.
 
-`tag:new` 成为 Arale 的一个组件。
+`tag:new` it works.
