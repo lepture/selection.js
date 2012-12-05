@@ -1,10 +1,8 @@
 {
   "name": "selection",
-  "root": "arale",
   "version": "0.9.0",
-  "tag": "utility",
   "description": "selection manipulating for textarea.",
-  "homepage": "http://aralejs.org/selection/",
+  "homepage": "http://lab.lepture.org/selection.js/",
   "author": "Hsiaoming Yang <lepture@me.com>",
   "keywords": [
     "selection",
@@ -14,10 +12,10 @@
   "main": "./selection.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aralejs/selection.git"
+    "url": "https://github.com/lepture/selection.js.git"
   },
   "bugs": {
-    "url": "https://github.com/aralejs/selection/issues"
+    "url": "https://github.com/lepture/selection.js/issues"
   },
   "licenses": [{
     "type": "BSD"
