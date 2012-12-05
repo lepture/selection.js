@@ -1,15 +1,17 @@
-# Makefile for selection.js
-# Author: Hsiaoming Yang <lepture@me.com>
-# Website: http://lepture.com
+THEME = $(HOME)/.liquidluck-themes/arale2
 
-.PHONY: doc upload publish
 
+build:
+	spm build -v
 
 doc:
-	doki.py -l js -t default --title=selection.js --github=selection.js README.md > index.html
+	liquidluck build -v -s $(THEME)/settings.yml
 
-publish:
-	git push origin gh-pages
+debug:
+	liquidluck server -d -s $(THEME)/settings.yml
 
-minify:
-	uglifyjs -nc selection.js > dist/selection.min.js
+server:
+	liquidluck server -s $(THEME)/settings.yml
+
+test:
+	phantomjs $(THEME)/static/js/run_jasmine_test.coffee http://127.0.0.1:8000/tests/runner.html

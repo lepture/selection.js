@@ -1,5 +1,7 @@
 # Selection.js
 
+-------
+
 
 > This is a project by [Hsiaoming Yang](http://lepture.com). All projects are listed at [project page](http://lab.lepture.com).
 
