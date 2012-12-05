@@ -9,7 +9,7 @@ define(function(require, exports, module) {
     this.cursor = function(start, end) {
       // get cursor
       var inputor = this.element;
-      if (typeof start == 'undefined') {
+      if (typeof start === 'undefined') {
         if (isIE) {
           return getIECursor(inputor);
         }
