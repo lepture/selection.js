@@ -2,18 +2,10 @@
 
 -------
 
-
-> This is a project by [Hsiaoming Yang](http://lepture.com). All projects are listed at [project page](http://lab.lepture.com).
-
 Selection.js provides a clean API to access selection. It is powerful and easy
 to use. It helps developers to deal with editor or something like that.
 
 
-- [GitHub](https://github.com/lepture/selection.js)
-- [DEMO](http://lab.lepture.com/selection.js/demo.html)
-- [seajs DEMO](http://lab.lepture.com/selection.js/seajs-demo.html)
-
-> Thanks to [ichord](https://github.com/ichord)'s work on [jquery.caret.js](https://github.com/ichord/At.js/blob/master/js/jquery.caret.js).
 
 ## Selection in textarea or input
 
@@ -99,31 +91,6 @@ The basic syntax:
     ```
 
 
-## Compatable with
-
-- [Nodejs](http://nodejs.org/)
-- [seajs](http://seajs.org/)
-- [jQuery](http://jquery.com/)
-
-### seajs
-
-Load selection with seajs:
-
-```javascript
-seajs.use(['./selection'], function(selection) {
-    var sel = selection(document.getElementsByTagName('textarea'));
-});
-```
-
-### jQuery
-
-Load selection with jQuery:
-
-```javascript
-var sel = $.fn.selection($('textarea'));
-```
-
-
 ## Selection on document
 
 Selection on document is much more complex. Should it support selection on document?
@@ -154,8 +121,3 @@ Selection on document is much more complex. Should it support selection on docum
 
     What if we select a very large area, it has elements in it,
     it is between two elements.
-
-
-## Changelog
-
-- v1.0.0: 2012-06-13
