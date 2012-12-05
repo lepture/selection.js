@@ -1,7 +1,36 @@
 define(function(require, exports, module) {
   var global = this;  // window
 
-  var selection;
+  var selection = function(inputor) {
+    if (inputor && inputor.length) {
+      // if inputor is jQuery or zepto or a list of elements
+      inputor = inputor[0];
+    }
+    if (inputor) {
+      // detect feature first.
+      if (typeof inputor.selectionStart != 'undefined') {
+        return new Selection(inputor);
+      }
+      var tag = inputor.tagName.toLowerCase();
+    }
+    if (tag && (tag === 'textarea' || tag === 'input')) {
+      // if has inputor and inputor element is textarea or input
+      return new Selection(inputor, true);
+    }
+
+    if (global.getSelection) return new DocumentSelection();
+    if (document.selection) return new DocumentSelection(true);
+    throw 'your browser is very weired';
+  }
+  selection.version = '0.9.0'
+
+  // CommonJS compatable
+  if (typeof module !== 'undefined') {
+    module.exports = selection;
+  } else {
+    global.selection = selection;
+  }
+
 
   // Selection in Texarea or Input
   function Selection(inputor, isIE) {
@@ -101,29 +130,6 @@ define(function(require, exports, module) {
     return this;
   }
 
-  // selection
-  // ---------
-  selection = function(inputor) {
-    if (inputor && inputor.length) {
-      // if inputor is jQuery or zepto or a list of elements
-      inputor = inputor[0];
-    }
-    if (inputor) {
-      // detect feature first.
-      if (typeof inputor.selectionStart != 'undefined') {
-        return new Selection(inputor);
-      }
-      var tag = inputor.tagName.toLowerCase();
-    }
-    if (tag && (tag === 'textarea' || tag === 'input')) {
-      // if has inputor and inputor element is textarea or input
-      return new Selection(inputor, true);
-    }
-
-    if (global.getSelection) return new DocumentSelection();
-    if (document.selection) return new DocumentSelection(true);
-    throw 'your browser is very weired';
-  }
 
   // Helpers
   // -------------
@@ -208,12 +214,5 @@ define(function(require, exports, module) {
       }
     }
     return element;
-  }
-
-  // CommonJS compatable
-  if (typeof module !== 'undefined') {
-    module.exports = selection;
-  } else {
-    global.selection = selection;
   }
 });
