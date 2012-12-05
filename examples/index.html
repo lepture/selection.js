@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Selection - Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Felix Felicis 3.8" />
+    <link type="image/x-icon" href="../static/css/favicon.ico?v=1dbfd" rel="icon">
+    <link rel="stylesheet" href="../static/css/normalize.css?v=d9edf" />
+    <link rel="stylesheet" href="../static/css/site.css?v=58bf3" />
+    <link rel="stylesheet" href="../static/css/solarized.css?v=a25ea" />
+    <script src="https://a.alipayobjects.com/seajs/1.2.1/sea.js"></script>
+    <script src="../static/js/arale-helper.js?v=702f8"></script>
+    <script src="../static/js/site.js?v=6b358"></script><script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36247332-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<script>
+  (function() {
+    var data;
+    seajs._package = data = {"name": "selection", "repository": {"url": "https://github.com/lepture/selection.js.git", "type": "git"}, "author": "Hsiaoming Yang <lepture@me.com>", "bugs": {"url": "https://github.com/lepture/selection.js/issues"}, "licenses": [{"type": "BSD"}], "version": "0.9.0", "keywords": ["selection", "textarea", "editor"], "output": {"selection.js": "."}, "main": "./selection.js", "homepage": "http://lab.lepture.org/selection.js/", "description": "selection manipulating for textarea."}
+    data.dependencies && (delete data.dependencies['$'])
+    data.devDependencies && (delete data.devDependencies['$'])
+
+    seajs.config({ alias: data.dependencies })
+    seajs.config({ alias: data.devDependencies })
+    seajs.config({ alias: {'selection': '../src/selection.js'} })
+  })();
+</script>
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js?v=837ac"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="body-wrapper">
+      <aside id="sidebar-wrapper">
+        <h1><a href="../">Selection</a><sup class="package-root"><a href="/"></a></sup></h1>
+        <p class="version">当前版本：<span>0.9.0</span></p>
+        <p class="description">selection manipulating for textarea.</p>
+        <a class="source" href="https://github.com/lepture/selection.js.git" target="_blank">View the Project</a>
+<ul id="navigation" role="navigation">
+  <li><a href="../">文档</a></li>
+  <li class="active"><a href="../examples/">演示</a></li>
+  <li><a href="../history.html">历史</a></li>
+  <li><a href="https://github.com/lepture/selection.js/issues" target="_blank">讨论</a></li>
+</ul>
+
+      </aside>
+      <div id="content-wrapper">
+        <div id="content">
+<article class="hentry">
+  <h1 class="entry-title">Example</h1>
+  <div class="meta">2012-12-05</div>
+  <div class="entry-content">
+    <style type="text/css">
+#speaker em {
+color: #d14;
+padding: 1px 4px;
+font-style: normal;
+background: #f7f7f9;
+border: 1px solid #e1e1e8;
+}
+</style>
+<p><textarea id="editor" rows="10" cols="80">Love its people, but never trust its government. Believe in evolution rather than revolution.</textarea></p>
+
+<div id="speaker">
+You are selecting <em id="speaker-text"></em>
+at <em id="speaker-cursor"></em>,
+surrounded by <em id="speaker-surround"></em>
+</div>
+
+<h2 id="toc_0">Let&#39;s play the game</h2>
+
+<div class="insert-code"><a href="javascript:;" id="button-cursor">set cursor</a>
+<a href="javascript:;" id="button-text">change text</a>
+<a href="javascript:;" id="button-prepend">prepend text</a>
+<a href="javascript:;" id="button-append">append text</a>
+<a href="javascript:;" id="button-line">current line</a>
+</div>
+<div class="highlight"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:;&quot;</span> <span class="na">id=</span><span class="s">&quot;button-cursor&quot;</span><span class="nt">&gt;</span>set cursor<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:;&quot;</span> <span class="na">id=</span><span class="s">&quot;button-text&quot;</span><span class="nt">&gt;</span>change text<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:;&quot;</span> <span class="na">id=</span><span class="s">&quot;button-prepend&quot;</span><span class="nt">&gt;</span>prepend text<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:;&quot;</span> <span class="na">id=</span><span class="s">&quot;button-append&quot;</span><span class="nt">&gt;</span>append text<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:;&quot;</span> <span class="na">id=</span><span class="s">&quot;button-line&quot;</span><span class="nt">&gt;</span>current line<span class="nt">&lt;/a&gt;</span>
+</pre></div>
+
+<script>
+seajs.use(['$', 'selection'], function($, selection) {
+    var sel = selection(document.getElementById('editor'));
+    $('#editor').on('click select keyup', function() {
+        $('#speaker-text').text(sel.text());
+        $('#speaker-cursor').text(sel.cursor());
+        $('#speaker-surround').text(sel.surround());
+    });
+
+    $('#button-cursor').click(function() {
+        sel.cursor(10, 19);
+        // equal sel.cursor([10, 19])
+    });
+    $('#button-text').click(function() {
+        sel.text('hello world');
+        // sel.text('hello world', 'left')
+        // sel.text('hello world', 'right')
+    });
+    $('#button-prepend').click(function() {
+        sel.prepend('hello prepend', 'right');
+    });
+    $('#button-append').click(function() {
+        sel.prepend('hello append', 'left');
+    });
+    $('#button-line').click(function() {
+        alert(sel.line());
+    });
+});
+</script>
+<div class="highlight"><pre><span class="nx">seajs</span><span class="p">.</span><span class="nx">use</span><span class="p">([</span><span class="s1">&#39;$&#39;</span><span class="p">,</span> <span class="s1">&#39;selection&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">,</span> <span class="nx">selection</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;editor&#39;</span><span class="p">));</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#editor&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click select keyup&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#speaker-text&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">());</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#speaker-cursor&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">());</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#speaker-surround&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">sel</span><span class="p">.</span><span class="nx">surround</span><span class="p">());</span>
+    <span class="p">});</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#button-cursor&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">);</span>
+        <span class="c1">// equal sel.cursor([10, 19])</span>
+    <span class="p">});</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#button-text&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">);</span>
+        <span class="c1">// sel.text(&#39;hello world&#39;, &#39;left&#39;)</span>
+        <span class="c1">// sel.text(&#39;hello world&#39;, &#39;right&#39;)</span>
+    <span class="p">});</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#button-prepend&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;hello prepend&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#button-append&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;hello append&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#button-line&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">sel</span><span class="p">.</span><span class="nx">line</span><span class="p">());</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+
+  </div>
+</article>
+</div>
+      </div>
+    </div>
+    <div id="footer-wrapper">
+      <footer>
+        <p class="powered">
+        <a href="http://aralejs.org">Arale</a> •
+        <a href="http://seajs.org">SeaJS</a> •
+        <a href="https://github.com/spmjs/spm">spm</a> •
+        <a href="http://lab.lepture.com/liquidluck/">Felix Felicis</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

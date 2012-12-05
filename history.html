@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Selection - History of Selection.js</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Felix Felicis 3.8" />
+    <link type="image/x-icon" href="./static/css/favicon.ico?v=1dbfd" rel="icon">
+    <link rel="stylesheet" href="./static/css/normalize.css?v=d9edf" />
+    <link rel="stylesheet" href="./static/css/site.css?v=58bf3" />
+    <link rel="stylesheet" href="./static/css/solarized.css?v=a25ea" />
+    <script src="https://a.alipayobjects.com/seajs/1.2.1/sea.js"></script>
+    <script src="./static/js/arale-helper.js?v=702f8"></script>
+    <script src="./static/js/site.js?v=6b358"></script><script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36247332-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<script>
+  (function() {
+    var data;
+    seajs._package = data = {"name": "selection", "repository": {"url": "https://github.com/lepture/selection.js.git", "type": "git"}, "author": "Hsiaoming Yang <lepture@me.com>", "bugs": {"url": "https://github.com/lepture/selection.js/issues"}, "licenses": [{"type": "BSD"}], "version": "0.9.0", "keywords": ["selection", "textarea", "editor"], "output": {"selection.js": "."}, "main": "./selection.js", "homepage": "http://lab.lepture.org/selection.js/", "description": "selection manipulating for textarea."}
+    data.dependencies && (delete data.dependencies['$'])
+    data.devDependencies && (delete data.devDependencies['$'])
+
+    seajs.config({ alias: data.dependencies })
+    seajs.config({ alias: data.devDependencies })
+    seajs.config({ alias: {'selection': './src/selection.js'} })
+  })();
+</script>
+    <!--[if lt IE 9]>
+    <script src="./static/js/html5shiv.js?v=837ac"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="body-wrapper">
+      <aside id="sidebar-wrapper">
+        <h1><a href="./">Selection</a><sup class="package-root"><a href="/"></a></sup></h1>
+        <p class="version">当前版本：<span>0.9.0</span></p>
+        <p class="description">selection manipulating for textarea.</p>
+        <a class="source" href="https://github.com/lepture/selection.js.git" target="_blank">View the Project</a>
+<ul id="navigation" role="navigation">
+  <li><a href="./">文档</a></li>
+  <li><a href="./examples/">演示</a></li>
+  <li class="active"><a href="./history.html">历史</a></li>
+  <li><a href="https://github.com/lepture/selection.js/issues" target="_blank">讨论</a></li>
+</ul>
+
+      </aside>
+      <div id="content-wrapper">
+        <div id="content">
+<article class="hentry">
+<h1 class="entry-title">版本历史</h1>
+  <div class="meta">2012-12-05</div>
+  <div class="entry-content">
+    <h2 id="toc_0">0.9.0</h2>
+<p><code>tag:new</code> make it a CMD.</p>
+<p><code>tag:new</code> it works.</p>
+
+  </div>
+</article>
+<script>
+seajs.use('$', function($) {
+  $('#content code').each(function(index, item) {
+      item = $(item);
+      var matcher = item.html().match(/^tag:(.+)/i);
+      if (matcher) {
+          item.replaceWith('<span class="tag tag-'+matcher[1]+'">'+matcher[1]+'</span>');
+      }
+  });
+});
+</script>
+<style>
+#content p {
+    border-top: 1px dashed #CCCCCC;
+    font-size: 16px;
+    margin: 12px 0;
+    padding: 12px 0 0 150px;
+    position: relative;
+}
+#content h2 {
+    margin-top: 60px;
+    font-family: Georgia;
+    border-bottom: none;
+}
+</style>
+</div>
+      </div>
+    </div>
+    <div id="footer-wrapper">
+      <footer>
+        <p class="powered">
+        <a href="http://aralejs.org">Arale</a> •
+        <a href="http://seajs.org">SeaJS</a> •
+        <a href="https://github.com/spmjs/spm">spm</a> •
+        <a href="http://lab.lepture.com/liquidluck/">Felix Felicis</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
