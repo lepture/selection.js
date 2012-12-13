@@ -1350,7 +1350,7 @@
       }
     };
 
-    Assertion.prototype.with = function() {
+    Assertion.prototype.withArgs = function() {
       expect(this.obj).to.be.spy();
       needCalledFlag(this);
       var a = Array.prototype.join.call(arguments, ',');

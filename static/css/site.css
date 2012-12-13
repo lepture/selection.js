@@ -209,14 +209,18 @@ body {
     font-size: 12px;
     margin-left: auto;
     margin-right: auto;
-    max-width: 980px;
-    *width: 980px;
+    max-width: 1040px;
+    *width: 1040px;
     padding: 10px 0;
     text-align: right;
 }
 #footer-wrapper a {
     color: #9C9C9C;
     text-decoration: none;
+}
+#footer-wrapper iframe {
+    position: relative;
+    top: 3px;
 }
 
 /* other */
@@ -232,13 +236,13 @@ body {
     background: transparent;
     font-style: italic;
 }
-#content .ff-iframe {
+#content .nico-iframe {
     position: relative;
 }
-#content .ff-iframe iframe {
+#content .nico-iframe iframe {
     width: 100%;
 }
-#content .ff-iframe .new-window {
+#content .nico-iframe .new-window {
     position: absolute;
     top: 0;
     right: 0;
@@ -289,9 +293,9 @@ body {
     }
 }
 
-/* history tag */
-.tag {
-    background: url("tags.png") no-repeat scroll 0 50% #fff;
+/* history history-tag */
+.history-tag {
+    background: url("history-tags.png") no-repeat scroll 0 50% #fff;
     border-bottom-left-radius: 2px;
     border-top-left-radius: 2px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 -1px 0 rgba(0, 0, 0, 0.2) inset;
@@ -312,30 +316,40 @@ body {
     left: 8px;
 }
 
-.tag-new {
+.history-tag-new {
     background-color: #FFEDCF;
 }
-.tag-changed {
+.history-tag-changed {
     background-color: #E9CFFF;
     background-position: -150px 50%;
 }
-.tag-fixed {
+.history-tag-fixed {
     background-color: #F0FFE1;
     background-position: -300px 50%;
 }
-.tag-html5 {
+.history-tag-html5 {
     background-color: #F8DFD8;
     background-position: -450px 50%;
 }
-.tag-improved {
+.history-tag-improved {
     background-color: #DCF6FF;
     background-position: -600px 50%;
 }
-.tag-unresolved {
+.history-tag-unresolved {
     background-color: #FFC8C8;
     background-position: -750px 50%;
 }
-.tag-developer {
+.history-tag-developer {
     background-color: #E7E7E7;
     background-position: -900px 50%;
+}
+
+.popup-install {
+    background: #fefefe;
+    font-size: 12px;
+    font-family: monospace,serif;
+    padding: 6px;
+    border: 1px solid #ddd;
+    color: #777;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2) inset;
 }

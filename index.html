@@ -1,41 +1,31 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="zh">
   <head>
     <meta charset="UTF-8">
-    <title>Selection - Selection.js</title>
+    <title>Arale - Selection.js</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Felix Felicis 3.8" />
-    <link type="image/x-icon" href="./static/css/favicon.ico?v=1dbfd" rel="icon">
-    <link rel="stylesheet" href="./static/css/normalize.css?v=d9edf" />
-    <link rel="stylesheet" href="./static/css/site.css?v=58bf3" />
-    <link rel="stylesheet" href="./static/css/solarized.css?v=a25ea" />
+    <meta name="generator" content="nico 0.1.0-beta" />
+    <link type="image/x-icon" href="./static/css/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="./static/css/normalize.css" />
+    <link rel="stylesheet" href="./static/css/site.css" />
+    <link rel="stylesheet" href="./static/css/solarized.css" />
     <script src="https://a.alipayobjects.com/seajs/1.2.1/sea.js"></script>
-    <script src="./static/js/arale-helper.js?v=702f8"></script>
-    <script src="./static/js/site.js?v=6b358"></script><script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36247332-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
+    <script src="./static/js/arale-helper.js"></script>
+    <script src="./static/js/site.js"></script>
 <script>
   (function() {
     var data;
-    seajs._package = data = {"name": "selection", "repository": {"url": "https://github.com/lepture/selection.js.git", "type": "git"}, "author": "Hsiaoming Yang <lepture@me.com>", "bugs": {"url": "https://github.com/lepture/selection.js/issues"}, "licenses": [{"type": "BSD"}], "version": "0.9.0", "keywords": ["selection", "textarea", "editor"], "output": {"selection.js": "."}, "main": "./selection.js", "homepage": "http://lab.lepture.org/selection.js/", "description": "selection manipulating for textarea."}
+    seajs._package = data = {"name":"selection","version":"0.9.0","description":"selection manipulating for textarea.","homepage":"http://lab.lepture.com/selection.js/","author":"Hsiaoming Yang <lepture@me.com>","keywords":["selection","textarea","editor"],"main":"./selection.js","repository":{"type":"git","url":"https://github.com/lepture/selection.js.git"},"bugs":{"url":"https://github.com/lepture/selection.js/issues"},"licenses":[{"type":"BSD"}],"output":{"selection.js":"."}}
     data.dependencies && (delete data.dependencies['$'])
     data.devDependencies && (delete data.devDependencies['$'])
 
     seajs.config({ alias: data.dependencies })
     seajs.config({ alias: data.devDependencies })
-    seajs.config({ alias: {'selection': './src/selection.js'} })
+    seajs.config({ alias: {"selection":"./src/selection.js"} })
   })();
 </script>
     <!--[if lt IE 9]>
-    <script src="./static/js/html5shiv.js?v=837ac"></script>
+    <script src="./static/js/html5shiv.js"></script>
     <![endif]-->
   </head>
   <body>
@@ -45,95 +35,96 @@
         <p class="version">当前版本：<span>0.9.0</span></p>
         <p class="description">selection manipulating for textarea.</p>
         <a class="source" href="https://github.com/lepture/selection.js.git" target="_blank">View the Project</a>
-<ul id="navigation" role="navigation">
-  <li class="active"><a href="./">文档</a></li>
-  <li><a href="./examples/">演示</a></li>
-  <li><a href="./history.html">历史</a></li>
-  <li><a href="https://github.com/lepture/selection.js/issues" target="_blank">讨论</a></li>
-</ul>
+        <ul id="navigation" role="navigation">
+          <li><a href="./">文档</a></li>
+          <li><a href="./examples/">演示</a></li>
+          <li><a href="./history.html">历史</a></li>
+          <li><a href="./tests/runner.html" target="_blank">用例</a></li>
+          <li><a href="https://github.com/lepture/selection.js/issues" target="_blank">讨论</a></li>
+        </ul>
+        
 
       </aside>
       <div id="content-wrapper">
         <div id="content">
 <article class="hentry">
   <h1 class="entry-title">Selection.js</h1>
-  <div class="meta">2012-12-05</div>
   <div class="entry-content">
     <p>Selection.js provides a clean API to access selection. It is powerful and easy
 to use. It helps developers to deal with editor or something like that.</p>
-
-<h2 id="toc_0">Selection in textarea or input</h2>
+<h2 id="selection-in-textarea-or-input">Selection in textarea or input</h2>
 <p>The basic syntax:</p>
 
 <ul>
 <li><p>create a selection.</p>
-<div class="highlight"><pre><span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;#textarea&#39;</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">sel</span> <span class="o">=</span> <span class="nx">selection</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;textarea&#39;</span><span class="p">));</span>  <span class="c1">// jQuery or zepto is accepted too</span>
-</pre></div></li>
+<div class="highlight"><pre><code class="javascript"><span class="keyword">var</span> sel = selection(document.getElementById(<span class="string">'#textarea'</span>));
+<span class="keyword">var</span> sel = selection(document.getElementsByTagName(<span class="string">'textarea'</span>));
+<span class="keyword">var</span> sel = selection($(<span class="string">'textarea'</span>));  <span class="comment">// jQuery or zepto is accepted too</span>
+</code></pre></div></li>
 <li><p>get current cursor position, return [start, end]</p>
-<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">();</span>
-</pre></div></li>
+<div class="highlight"><pre><code class="javascript">sel.cursor();
+</code></pre></div></li>
 <li><p>set cursor position (or select text)</p>
-<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
-</pre></div></li>
+<div class="highlight"><pre><code class="javascript">sel.cursor(<span class="number">1</span>);
+sel.cursor(<span class="number">1</span>, <span class="number">4</span>);
+sel.cursor([<span class="number">1</span>, <span class="number">4</span>]);
+</code></pre></div></li>
 <li><p>get current selected text</p>
-<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
-</pre></div></li>
+<div class="highlight"><pre><code class="javascript">sel.text();
+</code></pre></div></li>
 <li><p>replace current selected text</p>
-<div class="highlight"><pre><span class="c1">// will select replaced text</span>
-<span class="c1">// word ... [replaced text] word ...</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="javascript"><span class="comment">// will select replaced text</span>
+<span class="comment">// word ... [replaced text] word ...</span>
+sel.text(<span class="string">'replaced text'</span>);
 
-<span class="c1">// cursor will be at the left of the replaced text</span>
-<span class="c1">// word ... |replaced text word ...</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">);</span>
+<span class="comment">// cursor will be at the left of the replaced text</span>
+<span class="comment">// word ... |replaced text word ...</span>
+sel.text(<span class="string">'replaced text'</span>, <span class="string">'left'</span>);
 
-<span class="c1">// curosr will be at the right of the replaced text</span>
-<span class="c1">// word ... replaced text| word ...</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">);</span>
-</pre></div></li>
+<span class="comment">// curosr will be at the right of the replaced text</span>
+<span class="comment">// word ... replaced text| word ...</span>
+sel.text(<span class="string">'replaced text'</span>, <span class="string">'right'</span>);
+</code></pre></div></li>
 <li><p>insert text after current selection</p>
-<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">);</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">);</span>
-</pre></div></li>
+<div class="highlight"><pre><code class="javascript">sel.append(<span class="string">'append text'</span>);
+sel.append(<span class="string">'append text'</span>, <span class="string">'left'</span>);
+sel.append(<span class="string">'append text'</span>, <span class="string">'right'</span>);
+</code></pre></div></li>
 <li><p>insert text before current selection</p>
-<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">);</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">,</span> <span class="s1">&#39;left&#39;</span><span class="p">);</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">);</span>
-</pre></div></li>
+<div class="highlight"><pre><code class="javascript">sel.prepend(<span class="string">'prepend text'</span>);
+sel.prepend(<span class="string">'prepend text'</span>, <span class="string">'left'</span>);
+sel.prepend(<span class="string">'prepend text'</span>, <span class="string">'right'</span>);
+</code></pre></div></li>
 <li><p>get current line text</p>
-<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">line</span><span class="p">()</span>
-</pre></div></li>
+<div class="highlight"><pre><code class="javascript">sel.line()
+</code></pre></div></li>
 <li><p>get surround word</p>
-<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">surround</span><span class="p">();</span>
-<span class="nx">sel</span><span class="p">.</span><span class="nx">surround</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>   <span class="c1">// get surroud 3 characters.</span>
-</pre></div></li>
+<div class="highlight"><pre><code class="javascript">sel.surround();
+sel.surround(<span class="number">3</span>);   <span class="comment">// get surroud 3 characters.</span>
+</code></pre></div></li>
 <li><p>actions in a chain</p>
-<div class="highlight"><pre><span class="nx">sel</span><span class="p">.</span><span class="nx">cursor</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;replaced text&#39;</span><span class="p">).</span><span class="nx">prepend</span><span class="p">(</span><span class="s1">&#39;prepend text&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;append text&#39;</span><span class="p">);</span>
-</pre></div></li>
+<div class="highlight"><pre><code class="javascript">sel.cursor(<span class="number">1</span>, <span class="number">4</span>).text(<span class="string">'replaced text'</span>).prepend(<span class="string">'prepend text'</span>).append(<span class="string">'append text'</span>);
+</code></pre></div></li>
 </ul>
-
-<h2 id="toc_1">Selection on document</h2>
+<h2 id="selection-on-document">Selection on document</h2>
 <p>Selection on document is much more complex. Should it support selection on document?</p>
 
 <ul>
 <li><p>selection in the same element</p>
+
 <p>This is similar to selection in textarea, it is easy to implement this feature.</p></li>
 <li><p>selection has an element in it</p>
-<div class="highlight"><pre>this is a [selected <span class="nt">&lt;em&gt;</span>TEST<span class="nt">&lt;/em&gt;</span> text] for explain
-</pre></div>
+<div class="highlight"><pre><code class="xml">this is a [selected <span class="tag">&lt;<span class="title">em</span>&gt;</span>TEST<span class="tag">&lt;/<span class="title">em</span>&gt;</span> text] for explain
+</code></pre></div>
 <p>assume that we have selected <code>selected &lt;em&gt;TEST&lt;/em&gt; text</code> ,
 this is much more complex, but we can handle it.</p></li>
 <li><p>selection between elements</p>
-<div class="highlight"><pre><span class="nt">&lt;div&gt;</span>this is a [selection <span class="nt">&lt;/div&gt;&lt;p&gt;</span>between different] elements<span class="nt">&lt;/p&gt;</span>
-</pre></div>
+<div class="highlight"><pre><code class="xml"><span class="tag">&lt;<span class="title">div</span>&gt;</span>this is a [selection <span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;<span class="title">p</span>&gt;</span>between different] elements<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</code></pre></div>
 <p>assume that we have selected <code>selection &lt;div&gt;&lt;p&gt; between different</code>,
 it is even more complex.</p></li>
 <li><p>selection with a large area</p>
+
 <p>What if we select a very large area, it has elements in it,
 it is between two elements.</p></li>
 </ul>
@@ -145,11 +136,11 @@ it is between two elements.</p></li>
     </div>
     <div id="footer-wrapper">
       <footer>
-        <p class="powered">
+      <p class="powered">
         <a href="http://aralejs.org">Arale</a> •
         <a href="http://seajs.org">SeaJS</a> •
         <a href="https://github.com/spmjs/spm">spm</a> •
-        <a href="http://lab.lepture.com/liquidluck/">Felix Felicis</a>
+        <a href="http://lab.lepture.com/nico/">nico</a>
         </p>
       </footer>
     </div>

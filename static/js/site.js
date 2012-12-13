@@ -1,8 +1,8 @@
-seajs.use(['jquery'], function($) {
+seajs.use(['$', 'arale/popup/0.9.9/popup'], function($, Popup) {
   $(function(){
     $('h4 em, h3 em, h3 code, h4 code').parent().addClass('doc-api')
     // 给 iframe 加链接
-    $('.ff-iframe').each(function(i, item) {
+    $('.nico-iframe').each(function(i, item) {
       var src = $(item).find('iframe').attr('src')
       var html = '<a class="new-window" target="_blank" href="' + src + '">新窗口打开</a>'
       $(item).append(html)
@@ -27,25 +27,17 @@ seajs.use(['jquery'], function($) {
     }
     return false
   });
-})
 
-// iOS scaling bug fix
-// Rewritten version
-// By @mathias, @cheeaun and @jdalton
-// Source url: https://gist.github.com/901295
-;(function(doc) {
-  var addEvent = 'addEventListener',
-      type = 'gesturestart',
-      qsa = 'querySelectorAll',
-      scales = [1, 1],
-      meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : [];
-  function fix() {
-    meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1];
-    doc.removeEventListener(type, fix, true);
-  }
-  if ((meta = meta[meta.length - 1]) && addEvent in doc) {
-    fix();
-    scales = [0.25, 1.6];
-    doc[addEvent](type, fix, true);
-  }
-})(document);
+  // spm install message
+  var root = $('#sidebar-wrapper h1 sup a').html();
+  var name = $('#sidebar-wrapper h1 > a').html().toLowerCase();
+  var version = $('#sidebar-wrapper .version span').html();
+  new Popup({
+    trigger: '#sidebar-wrapper > h1',
+    template: '<div class="popup-install">spm install '
+        +root+'.'+name+'@'+version+'</div>',
+    align: {
+        baseXY: [0, '100%+5']
+    }
+  });
+})
