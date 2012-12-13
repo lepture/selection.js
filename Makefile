@@ -1,17 +1,20 @@
-THEME = $(HOME)/.liquidluck-themes/arale2
+THEME = $(HOME)/.spm/themes/arale
 
-
-build:
-	spm build -v
-
-doc:
-	liquidluck build -v -s $(THEME)/settings.yml
+build-doc:
+	@nico build -v -C $(THEME)/nico.js
 
 debug:
-	liquidluck server -d -s $(THEME)/settings.yml
+	@nico server -v -C $(THEME)/nico.js --watch debug
 
 server:
-	liquidluck server -s $(THEME)/settings.yml
+	@nico server -v -C $(THEME)/nico.js
 
-test:
-	phantomjs $(THEME)/static/js/run_jasmine_test.coffee http://127.0.0.1:8000/tests/runner.html
+publish: clean build-doc
+	@ghp-import _site
+	@git push origin gh-pages
+
+clean:
+	rm -fr _site
+
+
+.PHONY: build-doc debug server clean publish
