@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Arale - Example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="nico 0.1.0-beta" />
+    <meta name="generator" content="nico 0.1.0-rc" />
     <link type="image/x-icon" href="../static/css/favicon.ico" rel="icon">
     <link rel="stylesheet" href="../static/css/normalize.css" />
     <link rel="stylesheet" href="../static/css/site.css" />
@@ -15,7 +15,7 @@
 <script>
   (function() {
     var data;
-    seajs._package = data = {"name":"selection","version":"0.9.0","description":"selection manipulating for textarea.","homepage":"http://lab.lepture.com/selection.js/","author":"Hsiaoming Yang <lepture@me.com>","keywords":["selection","textarea","editor"],"main":"./selection.js","repository":{"type":"git","url":"https://github.com/lepture/selection.js.git"},"bugs":{"url":"https://github.com/lepture/selection.js/issues"},"licenses":[{"type":"BSD"}],"output":{"selection.js":"."}}
+    seajs._package = data = {"root":"lepture","name":"selection","version":"0.9.0","description":"selection manipulating for textarea.","homepage":"http://lab.lepture.com/selection.js/","author":"Hsiaoming Yang <lepture@me.com>","keywords":["selection","textarea","editor"],"main":"./selection.js","repository":{"type":"git","url":"https://github.com/lepture/selection.js.git"},"bugs":{"url":"https://github.com/lepture/selection.js/issues"},"licenses":[{"type":"BSD"}],"output":{"selection.js":"."}}
     data.dependencies && (delete data.dependencies['$'])
     data.devDependencies && (delete data.devDependencies['$'])
 
@@ -31,7 +31,7 @@
   <body>
     <div id="body-wrapper">
       <aside id="sidebar-wrapper">
-        <h1><a href="../">Selection</a><sup class="package-root"><a href="/"></a></sup></h1>
+        <h1><a href="../">Selection</a><sup class="package-root"><a href="/">lepture</a></sup></h1>
         <p class="version">当前版本：<span>0.9.0</span></p>
         <p class="description">selection manipulating for textarea.</p>
         <a class="source" href="https://github.com/lepture/selection.js.git" target="_blank">View the Project</a>
@@ -39,7 +39,6 @@
           <li><a href="../">文档</a></li>
           <li><a href="../examples/">演示</a></li>
           <li><a href="../history.html">历史</a></li>
-          <li><a href="../tests/runner.html" target="_blank">用例</a></li>
           <li><a href="https://github.com/lepture/selection.js/issues" target="_blank">讨论</a></li>
         </ul>
         
@@ -109,7 +108,7 @@ seajs.use(['$', 'selection'], function($, selection) {
     });
 });
 </script>
-<div class="highlight"><pre><code class="javascript">seajs.use([<span class="string">'$'</span>, <span class="string">'selection'</span>], <span class="keyword">function</span>($, selection) {
+<div class="highlight"><pre><code class="javascript">seajs.use([<span class="string">'$'</span>, <span class="string">'lepture/selection/0.9.0/selection'</span>], <span class="keyword">function</span>($, selection) {
     <span class="keyword">var</span> sel = selection(document.getElementById(<span class="string">'editor'</span>));
     $(<span class="string">'#editor'</span>).on(<span class="string">'click select keyup'</span>, <span class="keyword">function</span>() {
         $(<span class="string">'#speaker-text'</span>).text(sel.text());

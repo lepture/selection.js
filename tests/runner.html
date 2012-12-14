@@ -8,9 +8,7 @@
     <script src="http://static.alipayobjects.com/seajs/1.2.1/sea.js"></script>
     <script src="../static/js/arale-helper.js"></script>
     <script src="../static/js/es5-safe.js"></script>
-    <script src="../static/js/mocha.js"></script>
-    <script src="../static/js/sinon.js"></script>
-    <script src="../static/js/puerh.js"></script>
+    <script src="../static/js/test-suite.js"></script>
   </head>
   <body>
     <div id="mocha"></div>
@@ -18,7 +16,7 @@
       (function() {
         mocha.setup('bdd');
         puerh.use('expect');
-        var data = {"name":"selection","version":"0.9.0","description":"selection manipulating for textarea.","homepage":"http://lab.lepture.com/selection.js/","author":"Hsiaoming Yang <lepture@me.com>","keywords":["selection","textarea","editor"],"main":"./selection.js","repository":{"type":"git","url":"https://github.com/lepture/selection.js.git"},"bugs":{"url":"https://github.com/lepture/selection.js/issues"},"licenses":[{"type":"BSD"}],"output":{"selection.js":"."}}
+        var data = {"root":"lepture","name":"selection","version":"0.9.0","description":"selection manipulating for textarea.","homepage":"http://lab.lepture.com/selection.js/","author":"Hsiaoming Yang <lepture@me.com>","keywords":["selection","textarea","editor"],"main":"./selection.js","repository":{"type":"git","url":"https://github.com/lepture/selection.js.git"},"bugs":{"url":"https://github.com/lepture/selection.js/issues"},"licenses":[{"type":"BSD"}],"output":{"selection.js":"."}}
         data.dependencies && (delete data.dependencies['$'])
         data.devDependencies && (delete data.devDependencies['$'])
 

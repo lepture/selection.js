@@ -188,6 +188,7 @@ body {
     margin-right: 3px;
 }
 #content pre code, #content .highlight code {
+    color: #5D6A6A;
     background-color: transparent;
     margin: auto;
     padding: 0;
