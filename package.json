@@ -1,4 +1,5 @@
 {
+  "root": "lepture",
   "name": "selection",
   "version": "0.9.0",
   "description": "selection manipulating for textarea.",
