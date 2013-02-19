@@ -1,5 +1,5 @@
 {
-  "root": "lepture",
+  "family": "lepture",
   "name": "selection",
   "version": "0.9.0",
   "description": "selection manipulating for textarea.",
@@ -21,7 +21,9 @@
   "licenses": [{
     "type": "BSD"
   }],
-  "output": {
-    "selection.js": "."
+  "spm": {
+    "output": {
+      "selection.js": ["selection.js"]
+    }
   }
 }

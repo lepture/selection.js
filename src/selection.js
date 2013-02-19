@@ -141,15 +141,11 @@ define(function(require, exports, module) {
       return toString.call(val) === '[object Array]';
     }
   }
-  var isFunction = function(val) {
-    return toString.call(val) === '[object Function]';
-  }
 
   // IE sucks. This is how to get cursor position in IE.
   // Thanks to [ichord](https://github.com/ichord/At.js)
   function getIECursor(inputor) {
     var range = document.selection.createRange();
-    var pos = 0;
     if (range && range.parentElement() === inputor) {
       var start, end;
       var normalizedValue = inputor.value.replace(/\r\n/g, '\n');
