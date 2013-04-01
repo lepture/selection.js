@@ -10,7 +10,6 @@
     "textarea",
     "editor"
   ],
-  "main": "./selection.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/lepture/selection.js.git"
@@ -22,8 +21,6 @@
     "type": "BSD"
   }],
   "spm": {
-    "output": {
-      "selection.js": ["selection.js"]
-    }
+    "output": ["selection.js"]
   }
 }

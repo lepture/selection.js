@@ -1,6 +1,4 @@
 define(function(require, exports, module) {
-  var global = this;  // window
-
   var selection = function(inputor) {
     if (inputor && inputor.length) {
       // if inputor is jQuery or zepto or a list of elements
@@ -18,19 +16,13 @@ define(function(require, exports, module) {
       return new Selection(inputor, true);
     }
 
-    if (global.getSelection) return new DocumentSelection();
+    if (window.getSelection) return new DocumentSelection();
     if (document.selection) return new DocumentSelection(true);
-    throw 'your browser is very weired';
+    throw new Error('your browser is very weird');
   }
-  selection.version = '0.9.0'
+  selection.version = '<%= pkg.version %>';
 
-  // CommonJS compatable
-  if (typeof module !== 'undefined') {
-    module.exports = selection;
-  } else {
-    global.selection = selection;
-  }
-
+  module.exports = selection;
 
   // Selection in Texarea or Input
   function Selection(inputor, isIE) {
@@ -116,7 +108,7 @@ define(function(require, exports, module) {
   // TODO: should it support this feature ?
   function DocumentSelection(isIE) {
     if (!isIE) {
-      var sel = global.getSelection();
+      var sel = window.getSelection();
       this.element = getSelectionElement(sel);
       this.text = function() {
         // TODO set text
