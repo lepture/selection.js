@@ -137,28 +137,37 @@ define(function(require, exports, module) {
   // IE sucks. This is how to get cursor position in IE.
   // Thanks to [ichord](https://github.com/ichord/At.js)
   function getIECursor(inputor) {
+    var start, end, ipt = inputor;
     var range = document.selection.createRange();
-    if (range && range.parentElement() === inputor) {
-      var start, end;
-      var normalizedValue = inputor.value.replace(/\r\n/g, '\n');
-      var len = normalizedValue.length;
-      var textInputRange = inputor.createTextRange();
-      textInputRange.moveToBookmark(range.getBookmark());
-      var endRange = inputor.createTextRange();
-      endRange.collapse(false);
-      if (textInputRange.compareEndPoints('StartToEnd', endRange) > -1) {
+    var len = ipt.value.length;
+
+    var normalizedValue = ipt.value.replace(/\r\n/g, "\n");
+
+    // Create a working TextRange that lives only in the input
+    var textInputRange = ipt.createTextRange();
+    textInputRange.moveToBookmark(range.getBookmark());
+
+    // Check if the start and end of the selection are at the very end
+    // of the input, since moveStart/moveEnd doesn't return what we want
+    // in those cases
+    var endRange = ipt.createTextRange();
+    endRange.collapse(false);
+
+    if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
         start = end = len;
-      } else {
-        start = -textInputRange.moveStart('character', -len);
-        end = -textInputRange.moveEnd('character', -len);
-      }
-      // when select to the last character, end = 1
-      if (end < start) {
-        end = len;
-      }
-      return [start, end];
+    } else {
+        start = -textInputRange.moveStart("character", -len);
+        start += normalizedValue.slice(0, start).split("\n").length - 1;
+
+        if (textInputRange.compareEndPoints("EndToEnd", endRange) > -1) {
+            end = len;
+        } else {
+            end = -textInputRange.moveEnd("character", -len);
+            end += normalizedValue.slice(0, end).split("\n").length - 1;
+        }
     }
-    return [0, 0];
+
+    return [start, end];
   }
 
   function setIECursor(inputor, start, end) {
