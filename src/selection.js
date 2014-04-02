@@ -139,9 +139,9 @@ define(function(require, exports, module) {
   function getIECursor(inputor) {
     var start, end;
     var range = document.selection.createRange();
-    var len = inputor.value.length;
 
     var normalizedValue = inputor.value.replace(/\r\n/g, "\n");
+    var len = normalizedValue.length;
 
     // Create a working TextRange that lives only in the input
     var textInputRange = inputor.createTextRange();
@@ -157,13 +157,11 @@ define(function(require, exports, module) {
       start = end = len;
     } else {
       start = -textInputRange.moveStart("character", -len);
-      start += normalizedValue.slice(0, start).split("\n").length - 1;
 
       if (textInputRange.compareEndPoints("EndToEnd", endRange) > -1) {
         end = len;
       } else {
         end = -textInputRange.moveEnd("character", -len);
-        end += normalizedValue.slice(0, end).split("\n").length - 1;
       }
     }
 
@@ -180,7 +178,7 @@ define(function(require, exports, module) {
 
   function insertText(selection, text, start, end, cursor) {
     if (typeof text === 'undefined') text = '';
-    var value = selection.element.value;
+    var value = selection.element.value.replace(/\r\n/g, '\n');
     selection.element.value = [
       value.slice(0, start), text, value.slice(end)
     ].join('');
