@@ -1,0 +1,10 @@
+{
+  "name": "selection.js",
+  "repo": "lepture/selection.js",
+  "description": "selection manipulating for textarea.",
+  "version": "0.10.0",
+  "main": "src/selection.js",
+  "scripts": [
+    "src/selection.js"
+  ]
+}

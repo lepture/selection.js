@@ -34,7 +34,7 @@ surrounded by <em id="speaker-surround"></em>
 
 
 ````js
-seajs.use(['$', 'selection'], function($, selection) {
+seajs.use(['jquery', '../src/selection.js'], function($, selection) {
     var sel = selection(document.getElementById('editor'));
     $('#editor').on('click select keyup', function() {
         $('#speaker-text').text(sel.text());
