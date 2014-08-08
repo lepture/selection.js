@@ -3,8 +3,8 @@
   "repo": "lepture/selection.js",
   "description": "selection manipulating for textarea.",
   "version": "0.10.0",
-  "main": "src/selection.js",
+  "main": "index.js",
   "scripts": [
-    "src/selection.js"
+    "index.js"
   ]
 }

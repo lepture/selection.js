@@ -3,7 +3,7 @@
   "version": "0.10.0",
   "description": "selection manipulating for textarea.",
   "homepage": "http://lab.lepture.com/selection.js/",
-  "author": "Hsiaoming Yang <lepture@me.com>",
+  "author": "Hsiaoming Yang <me@lepture.com>",
   "keywords": [
     "selection",
     "textarea",
@@ -22,7 +22,7 @@
     }
   ],
   "spm": {
-    "main": "src/selection.js",
+    "main": "index.js",
     "dependencies": {},
     "devDependencies": {
       "expect.js": "0.3.1",
