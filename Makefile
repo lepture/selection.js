@@ -17,4 +17,7 @@ standalone:
 	@sed -i.bak "s/module.exports/\/\//g" ${NAME}
 	@rm ${NAME}.bak
 
+watch:
+	@rewatch index.js -c "make standalone"
+
 .PHONY: clean
