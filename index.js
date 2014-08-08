@@ -1,84 +1,89 @@
-var selection = function (inputor) {
-  if (inputor && inputor.length) {
-    // if inputor is jQuery or zepto or a list of elements
-    inputor = inputor[0];
-  }
-  if (inputor) {
-    // detect feature first.
-    if (typeof inputor.selectionStart !== 'undefined') {
-      return new Selection(inputor);
-    }
-    var tag = inputor.tagName.toLowerCase();
-  }
-  if (tag && (tag === 'textarea' || tag === 'input')) {
-    // if has inputor and inputor element is textarea or input
-    return new Selection(inputor, true);
+/**
+ * Selection.js
+ */
+
+module.exports = Selection;
+
+
+/**
+ * Selection interface.
+ */
+function Selection(input) {
+  if (!(this instanceof Selection)) {
+    return new Selection(input);
   }
 
-  if (window.getSelection) return new DocumentSelection();
-  if (document.selection) return new DocumentSelection(true);
-  throw new Error('your browser is very weird');
-};
-selection.version = '<%= pkg.version %>';
+  if (input && input.length) {
+    // if input is jQuery or zepto or a list of elements
+    input = input[0];
+  }
 
-module.exports = selection;
-
-// Selection in Texarea or Input
-
-
-function Selection(inputor, isIE) {
-  this.element = inputor;
-  this.cursor = function (start, end) {
-    // get cursor
-    var inputor = this.element;
-    if (typeof start === 'undefined') {
-      if (isIE) {
-        return getIECursor(inputor);
-      }
-      return [inputor.selectionStart, inputor.selectionEnd];
-    }
-
-    // set cursor
-    if (isArray(start)) {
-      var _s = start;
-      start = _s[0];
-      end = _s[1];
-    }
-    if (typeof end === 'undefined') end = start;
-    if (isIE) {
-      setIECursor(inputor, start, end);
-    } else {
-      inputor.setSelectionRange(start, end);
-    }
-    return this;
-  };
-  return this;
+  this.element = input;
 }
 
+
+/**
+ * Getter and Setter for cursor.
+ */
+Selection.prototype.cursor = function(start, end) {
+  var input = this.element;
+  var isIE = typeof input.selectionStart === 'undefined';
+
+  // get cursor
+  if (typeof start === 'undefined') {
+    if (isIE) {
+      return getIECursor(input);
+    }
+    return [input.selectionStart, input.selectionEnd];
+  }
+
+  // set cursor
+  if (isArray(start)) {
+    var _s = start;
+    start = _s[0];
+    end = _s[1];
+  }
+
+  if (typeof end === 'undefined') {
+    end = start;
+  }
+
+  if (isIE) {
+    setIECursor(input, start, end);
+  } else {
+    input.setSelectionRange(start, end);
+  }
+  return this;
+};
+
+
 // get or set selected text
-Selection.prototype.text = function (text, cur) {
-  var inputor = this.element;
+Selection.prototype.text = function(text, pos) {
+  var input = this.element;
   var cursor = this.cursor();
   if (typeof text === 'undefined') {
-    return inputor.value.slice(cursor[0], cursor[1]);
+    return input.value.slice(cursor[0], cursor[1]);
   }
-  return insertText(this, text, cursor[0], cursor[1], cur);
+  return insertText(this, text, cursor[0], cursor[1], pos);
 };
+
 
 // append text to the end, and select the appended text
-Selection.prototype.append = function (text, cur) {
+Selection.prototype.append = function(text, pos) {
   var end = this.cursor()[1];
-  return insertText(this, text, end, end, cur);
+  return insertText(this, text, end, end, pos);
 };
+
 
 // prepend text to the start, and select the prepended text
-Selection.prototype.prepend = function (text, cur) {
+Selection.prototype.prepend = function(text, pos) {
   var start = this.cursor()[0];
-  return insertText(this, text, start, start, cur);
+  return insertText(this, text, start, start, pos);
 };
 
+
 // get the surround words of the selection
-Selection.prototype.surround = function (count) {
+Selection.prototype.surround = function(count) {
   if (typeof count === 'undefined') count = 1;
   var value = this.element.value;
   var cursor = this.cursor();
@@ -88,7 +93,8 @@ Selection.prototype.surround = function (count) {
   return [before, after];
 };
 
-Selection.prototype.line = function () {
+
+Selection.prototype.line = function() {
   var value = this.element.value;
   var cursor = this.cursor();
   var before = value.slice(0, cursor[0]).lastIndexOf('\n');
@@ -103,56 +109,34 @@ Selection.prototype.line = function () {
   return value.slice(start, end);
 };
 
-// Selection on document
-// TODO: should it support this feature ?
 
-
-function DocumentSelection(isIE) {
-  if (!isIE) {
-    var sel = window.getSelection();
-    this.element = getSelectionElement(sel);
-    this.text = function () {
-      // TODO set text
-      return sel.toString();
-    };
-  } else {
-    this.text = function () {
-      return document.selection.createRange().text;
-    };
-  }
-  return this;
-}
-
-
-// Helpers
-// -------------
 var toString = Object.prototype.toString;
 var isArray = Array.isArray;
 if (!isArray) {
-  isArray = function (val) {
+  isArray = function(val) {
     return toString.call(val) === '[object Array]';
   };
 }
 
+
 // IE sucks. This is how to get cursor position in IE.
 // Thanks to [ichord](https://github.com/ichord/At.js)
 
-
-function getIECursor(inputor) {
+function getIECursor(input) {
   var start, end;
   var range = document.selection.createRange();
 
-  var normalizedValue = inputor.value.replace(/\r\n/g, "\n");
+  var normalizedValue = input.value.replace(/\r\n/g, "\n");
   var len = normalizedValue.length;
 
   // Create a working TextRange that lives only in the input
-  var textInputRange = inputor.createTextRange();
+  var textInputRange = input.createTextRange();
   textInputRange.moveToBookmark(range.getBookmark());
 
   // Check if the start and end of the selection are at the very end
   // of the input, since moveStart/moveEnd doesn't return what we want
   // in those cases
-  var endRange = inputor.createTextRange();
+  var endRange = input.createTextRange();
   endRange.collapse(false);
 
   if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
@@ -170,44 +154,28 @@ function getIECursor(inputor) {
   return [start, end];
 }
 
-function setIECursor(inputor, start, end) {
-  var range = inputor.createTextRange();
+
+function setIECursor(input, start, end) {
+  var range = input.createTextRange();
   range.move('character', start);
   // why should it be named as ``moveEnd`` ?
   range.moveEnd('character', end - start);
   range.select();
 }
 
-function insertText(selection, text, start, end, cursor) {
+
+function insertText(selection, text, start, end, pos) {
   if (typeof text === 'undefined') text = '';
   var value = selection.element.value.replace(/\r\n/g, '\n');
   selection.element.value = [
   value.slice(0, start), text, value.slice(end)].join('');
   end = start + text.length;
-  if (cursor === 'left') {
+  if (pos === 'left') {
     selection.cursor(start);
-  } else if (cursor === 'right') {
+  } else if (pos === 'right') {
     selection.cursor(end);
   } else {
     selection.cursor(start, end);
   }
   return selection;
-}
-
-function getSelectionElement(sel) {
-  // start point and end point maybe in the different elements.
-  // then we find their common father.
-  var element = null;
-  var anchorNode = sel.anchorNode;
-  var focusNode = sel.focusNode;
-  while (!element) {
-    if (anchorNode.parentElement === focusNode.parentElement) {
-      element = focusNode.parentElement;
-      break;
-    } else {
-      anchorNode = anchorNode.parentElement;
-      focusNode = focusNode.parentElement;
-    }
-  }
-  return element;
 }
