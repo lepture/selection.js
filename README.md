@@ -50,14 +50,6 @@ Replace current selected text:
 // will select replaced text
 // word ... [replaced text] word ...
 sel.text('replaced text');
-
-// cursor will be at the left of the replaced text
-// word ... |replaced text word ...
-sel.text('replaced text', 'left');
-
-// curosr will be at the right of the replaced text
-// word ... replaced text| word ...
-sel.text('replaced text', 'right');
 ```
 
 ### Selection#append(text)
@@ -66,8 +58,6 @@ Insert text after current selection
 
 ```javascript
 sel.append('append text');
-sel.append('append text', 'left');
-sel.append('append text', 'right');
 ```
 
 ### Selection#prepend(text)
@@ -76,8 +66,6 @@ Insert text before current selection:
 
 ```javascript
 sel.prepend('prepend text');
-sel.prepend('prepend text', 'left');
-sel.prepend('prepend text', 'right');
 ```
 
 ### Selection#line()
