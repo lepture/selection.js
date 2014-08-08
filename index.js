@@ -58,27 +58,30 @@ Selection.prototype.cursor = function(start, end) {
 
 
 // get or set selected text
-Selection.prototype.text = function(text, pos) {
+Selection.prototype.text = function(text) {
   var input = this.element;
   var cursor = this.cursor();
   if (typeof text === 'undefined') {
     return input.value.slice(cursor[0], cursor[1]);
   }
-  return insertText(this, text, cursor[0], cursor[1], pos);
+  insertText(input, text, cursor[0], cursor[1]);
+  return this.cursor(cursor[0], cursor[0] + text.length);
 };
 
 
 // append text to the end, and select the appended text
-Selection.prototype.append = function(text, pos) {
-  var end = this.cursor()[1];
-  return insertText(this, text, end, end, pos);
+Selection.prototype.append = function(text) {
+  var cursor = this.cursor();
+  insertText(this.element, text, cursor[1], cursor[1]);
+  return this.cursor(cursor[0], cursor[1] + text.length);
 };
 
 
 // prepend text to the start, and select the prepended text
-Selection.prototype.prepend = function(text, pos) {
-  var start = this.cursor()[0];
-  return insertText(this, text, start, start, pos);
+Selection.prototype.prepend = function(text) {
+  var cursor = this.cursor();
+  insertText(this.element, text, cursor[0], cursor[0]);
+  return this.cursor(cursor[0], cursor[1] + text.length);
 };
 
 
@@ -164,18 +167,10 @@ function setIECursor(input, start, end) {
 }
 
 
-function insertText(selection, text, start, end, pos) {
-  if (typeof text === 'undefined') text = '';
-  var value = selection.element.value.replace(/\r\n/g, '\n');
-  selection.element.value = [
-  value.slice(0, start), text, value.slice(end)].join('');
-  end = start + text.length;
-  if (pos === 'left') {
-    selection.cursor(start);
-  } else if (pos === 'right') {
-    selection.cursor(end);
-  } else {
-    selection.cursor(start, end);
+function insertText(el, text, start, end) {
+  if (typeof text === 'undefined') {
+    text = '';
   }
-  return selection;
+  var value = el.value.replace(/\r\n/g, '\n');
+  el.value = [value.slice(0, start), text, value.slice(end)].join('');
 }
