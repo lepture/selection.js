@@ -2,7 +2,7 @@
   "name": "selection.js",
   "repo": "lepture/selection.js",
   "description": "selection manipulating for textarea.",
-  "version": "0.10.0",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": [
     "index.js"

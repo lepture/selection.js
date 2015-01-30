@@ -1,6 +1,6 @@
 {
   "name": "selection.js",
-  "version": "0.10.0",
+  "version": "1.0.0",
   "description": "selection manipulating for textarea.",
   "homepage": "http://lab.lepture.com/selection.js/",
   "author": "Hsiaoming Yang <me@lepture.com>",
