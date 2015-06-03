@@ -1,7 +1,7 @@
 # Selection.js
 
-Selection.js provides a clean API to access selection. It is powerful and
-easy to use. It helps developers to deal with editor or something like that.
+Selection.js provides a clean API to access the selection in a `<textarea`>. It is powerful and
+easy to use. It helps developers to deal with editors or the like.
 
 ## Installation
 
