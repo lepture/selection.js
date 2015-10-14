@@ -85,6 +85,14 @@ sel.surround();
 sel.surround(3);   // get surroud 3 characters.
 ```
 
+### Selection#insertText(text, cursorStart, cursorEnd)
+
+Insert text at the give cursor:
+
+```javascript
+sel.insertText('text', 3, 4);
+```
+
 ## License
 
 New BSD

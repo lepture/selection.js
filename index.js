@@ -112,8 +112,17 @@ Selection.prototype.line = function() {
   return value.slice(start, end);
 };
 
-Selection.prototype.insertText = function(text, cursor) {
-  insertText(this.element, text, cursor[0], cursor[1]);
+Selection.prototype.insertText = function(text, start, end) {
+  if (isArray(start)) {
+    var _s = start;
+    start = _s[0];
+    end = _s[1];
+  }
+  if (typeof end === 'undefined') {
+    end = start;
+  }
+  insertText(this.element, text, start, end);
+  return this;
 };
 
 
