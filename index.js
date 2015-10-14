@@ -112,6 +112,10 @@ Selection.prototype.line = function() {
   return value.slice(start, end);
 };
 
+Selection.prototype.insertText = function(text, cursor) {
+  insertText(this.element, text, cursor[0], cursor[1]);
+};
+
 
 var toString = Object.prototype.toString;
 var isArray = Array.isArray;
