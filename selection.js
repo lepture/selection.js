@@ -113,6 +113,19 @@ Selection.prototype.line = function() {
   return value.slice(start, end);
 };
 
+Selection.prototype.insertText = function(text, start, end) {
+  if (isArray(start)) {
+    var _s = start;
+    start = _s[0];
+    end = _s[1];
+  }
+  if (typeof end === 'undefined') {
+    end = start;
+  }
+  insertText(this.element, text, start, end);
+  return this;
+};
+
 
 var toString = Object.prototype.toString;
 var isArray = Array.isArray;
