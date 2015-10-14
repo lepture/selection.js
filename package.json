@@ -2,7 +2,7 @@
   "name": "selection.js",
   "version": "1.0.0",
   "description": "selection manipulating for textarea.",
-  "homepage": "http://lab.lepture.com/selection.js/",
+  "homepage": "https://github.com/lepture/selection.js",
   "author": "Hsiaoming Yang <me@lepture.com>",
   "keywords": [
     "selection",
@@ -20,17 +20,5 @@
     {
       "type": "BSD"
     }
-  ],
-  "spm": {
-    "main": "index.js",
-    "dependencies": {},
-    "devDependencies": {
-      "expect.js": "0.3.1",
-      "jquery": "1.7.2"
-    },
-    "engines": {
-      "seajs": "2.2.1",
-      "seajs-text": "1.1.0"
-    }
-  }
+  ]
 }
