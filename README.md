@@ -5,9 +5,9 @@ easy to use. It helps developers to deal with editors or the like.
 
 ## Installation
 
-Install with component:
+Install with npm:
 
-    $ component install lepture/selection.js
+    $ npm install selection.js --save
 
 
 ## API
