@@ -184,17 +184,8 @@ function insertText(el, text, start, end) {
   if (typeof text === 'undefined') {
     text = '';
   }
-  var value = el.value.replace(/\r\n/g, '\n');
-  // fix problems with undo/redo.
-  // Thanks to [StackOverflow](http://stackoverflow.com/questions/7553430/javascript-textarea-undo-redo)
-  var event = document.createEvent('TextEvent');
-  if ('function' === typeof event.initTextEvent) {
-    event.initTextEvent('textInput', true, true, null, text);
-    el.selectionStart = start;
-    el.selectionEnd = end;
-    el.dispatchEvent(event);
-  } else {
-    // fallback for firefox or old opera. And, probably, old IEs
-    el.value = [value.slice(0, start), text, value.slice(end)].join('');
-  }
+  el.selectionStart = start;
+  el.selectionEnd = end;
+  // Chrome 53+ doesn't support createEvent.
+  document.execCommand('insertText', false, text);
 }

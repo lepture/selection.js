@@ -3,6 +3,12 @@
 Here is the changelog.
 
 
+## Version 1.1.1
+
+Released at **Apr 16, 2017**.
+
+Fix insertText for Chrome 53+.
+
 ## Version 1.1
 
 Released at **Oct 14, 2015**.
